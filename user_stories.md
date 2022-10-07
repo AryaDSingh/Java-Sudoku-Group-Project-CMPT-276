@@ -6,12 +6,12 @@ Expert Users:
 
 
 
-Beginner Language Learner:
+Beginner Language Learner: As a beginner language learner, I want the system to decide which vocabularies should be used for a particular match of Sudoku with a certain degree of variety in words.
 
 
 
 Intermediate Language Learner:
-As a intermediate language learner, I want to 
+As an intermediate language learner, I want to 
 
 
 Advanced Language Learner:
