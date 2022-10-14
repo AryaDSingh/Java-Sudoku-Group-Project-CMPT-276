@@ -7,6 +7,8 @@ Users who are struggling to learn the game can use the help button. When the use
 
 Upon starting the app the user will be greeted by a start menu which will feature the title of the game near the centre of the screen in a large appealing font. Below the title the game will feature various buttons which can be selected by the user. The first option "play", will allow the user to start a game imediatley and enter the game scene. The next option will include the "settings" which displays the same type of window as the button found in the game. The last button "quit" will allow the user to leave the menu and terminate the app."
 
+<img src="img/start_menu.png"> 
+
 > As a novice user, I want a hint button that helps me find my next move, so that I can get unstuck when im confused.
 
 ---The app will feature a hint button which will be located on the edge of the screen. When the user presses this button the screen will highlight an empty square on the board and indicate that a legal move can be played there. This feature can be disabled or enabled in the settings menu
