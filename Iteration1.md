@@ -1,23 +1,29 @@
 ## Novice Users
 > As a novice user, I want a help button that displays relevant information on how the game is meant to be played, so that i can better learn how to use the app.
 
-Users who are struggling to learn the game can use the help button. When the user presses this button it will display a new popup window which will summarize the various rules and systems of the game. It will also feature various pictures and states of the game such as a victory state in which the board is filled up. The help button will be located on the edge of the screen. This feature can be disabled in the settings menu
+Users who are struggling to learn the game can use the help button. When the user presses this button it will display a new popup window which will summarize the various rules and systems of the game. It will also feature various pictures and states of the game such as a victory state in which the board is filled up. The help button will be located on the edge of the screen. This feature can be disabled in the settings menu. On the sketch below, the help button can be seen circled in red.
+
+<img src="img/help_button.png">
+
 
 > As a novice user, I want a start menu when booting up the app, so that the app feels more professional.
 
-Upon starting the app the user will be greeted by a start menu which will feature the title of the game near the centre of the screen in a large appealing font. Below the title the game will feature various buttons which can be selected by the user. The first option "play", will allow the user to start a game imediatley and enter the game scene. The next option will include the "settings" which displays the same type of window as the button found in the game. The last button "quit" will allow the user to leave the menu and terminate the app."
+Upon starting the app the user will be greeted by a start menu which will feature the title of the game near the centre of the screen in a large appealing font. Below the title the game will feature various buttons which can be selected by the user. The first option "play", will allow the user to start a game imediatley and enter the game scene. The next option will include the "settings" which displays the same type of window as the button found in the game. The last button "quit" will allow the user to leave the menu and terminate the app. A sketch of the start menu screen is shown below"
 
 <img src="img/start_menu.png"> 
 
 > As a novice user, I want a hint button that helps me find my next move, so that I can get unstuck when im confused.
 
----The app will feature a hint button which will be located on the edge of the screen. When the user presses this button the screen will highlight an empty square on the board and indicate that a legal move can be played there. This feature can be disabled or enabled in the settings menu
+The app will feature a hint button which will be located on the edge of the screen. When the user presses this button the screen will highlight an empty square on the board and indicate that a legal move can be played there. This feature can be disabled or enabled in the settings menu. On the sketch below, the hint button can be seen circled in red.
 
+<img src="img/hint_button.png">
 
 # Expert Users
 > As a expert user of the app, I want to turn off and on some of the settings, so that I can make the experience more customized to my preferences.
 
-touching the setting icon should open a new window which willl display various controls which can alter the user interface and/or change the system of the game. For example disabling the hint buttons requires the user to tap the button labled "disable hints". This will remove the hint button from the user interface making it inaccessable. The same can be done for most of the other buttons. The settings menu will be located on the edge of the screen
+touching the setting icon should open a new window which willl display various controls which can alter the user interface and/or change the system of the game. For example disabling the hint buttons requires the user to tap the button labled "disable hints". This will remove the hint button from the user interface making it inaccessable. The same can be done for most of the other buttons. The settings menu will be located on the edge of the screen. On the sketch below, the settings button can be seen circled in red.
+
+<img src="img/settings_button.png">
 
 > As an advanced language learner, I want a trophy button which displays my statistics in the game, so that I can keep track of my progress.
 
