@@ -1,9 +1,10 @@
 ## Novice Users
 > As a novice user, I want a help button that displays relevant information on how the game is meant to be played, so that i can better learn how to use the app.
 
-Users who are struggling to learn the game can use the help button. When the user presses this button it will display a new popup window which will summarize the various rules and systems of the game. It will also feature various pictures and states of the game such as a victory state in which the board is filled up. The help button will be located on the edge of the screen. This feature can be disabled in the settings menu. On the sketch below, the help button can be seen circled in red.
+Users who are struggling to learn the game can use the help button. When the user presses this button it will display a new popup window which will summarize the various rules and systems of the game. It will also feature various pictures and states of the game such as a victory state in which the board is filled up. The help button will be located on the edge of the screen. This feature can be disabled in the settings menu. On the sketch below, the help button can be seen circled in red. The popup menu is also shown below
 
 <img src="img/help_button.png">
+<img src="img/help_screen.png">
 
 > As a novice user, I want a start menu when booting up the app, so that the app feels more professional.
 
@@ -20,9 +21,10 @@ The app will feature a hint button which will be located on the edge of the scre
 # Expert Users
 > As a expert user of the app, I want to turn off and on some of the settings, so that I can make the experience more customized to my preferences.
 
-touching the setting icon should open a new window which willl display various controls which can alter the user interface and/or change the system of the game. For example disabling the hint buttons requires the user to tap the button labled "disable hints". This will remove the hint button from the user interface making it inaccessable. The same can be done for most of the other buttons. The settings menu will be located on the edge of the screen. On the sketch below, the settings button can be seen circled in red.
+touching the setting icon should open a new window which willl display various controls which can alter the user interface and/or change the system of the game. For example disabling the hint buttons requires the user to tap the button labled "disable hints". This will remove the hint button from the user interface making it inaccessable. The same can be done for most of the other buttons. The settings menu will be located on the edge of the screen. On the sketch below, the settings button can be seen circled in red. The popup menu is also shown below
 
 <img src="img/settings_button.png">
+<img src="img/settings_screen.png">
 
 > As an advanced language learner, I want a statistic button which displays my statistics in the game, so that I can keep track of my progress.
 
@@ -33,9 +35,10 @@ The app will feature a button with a statistics that will be displayed on the co
 - the player's fastest win time
 - the player's average win time
 
-On the sketch below, the statistics button can be seen circled in red.
+On the sketch below, the statistics button can be seen circled in red. The popup menu is also shown below
 
 <img src="img/stat_button.png">
+<img src="img/stat_screen.png">
 
 ## Beginner Language Learners
 > As a beginner language learner, I want the system to decide which vocabularies should be used for a particular match of Sudoku with a certain degree of variety in words.
