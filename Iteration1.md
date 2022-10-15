@@ -4,7 +4,6 @@
 Users who are struggling to learn the game can use the help button. When the user presses this button it will display a new popup window which will summarize the various rules and systems of the game. It will also feature various pictures and states of the game such as a victory state in which the board is filled up. The help button will be located on the edge of the screen. This feature can be disabled in the settings menu. On the sketch below, the help button can be seen circled in red.
 
 <img src="img/help_button.png">
-<img src="image.png">
 
 > As a novice user, I want a start menu when booting up the app, so that the app feels more professional.
 
