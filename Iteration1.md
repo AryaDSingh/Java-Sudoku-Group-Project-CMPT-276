@@ -24,14 +24,18 @@ touching the setting icon should open a new window which willl display various c
 
 <img src="img/settings_button.png">
 
-> As an advanced language learner, I want a trophy button which displays my statistics in the game, so that I can keep track of my progress.
+> As an advanced language learner, I want a statistic button which displays my statistics in the game, so that I can keep track of my progress.
 
-The app will feature a button with a trophy image that will be displayed on the corner of the screen. When the user clicks the button it will display a popup window. This window will display various statistics of the user which include:
+The app will feature a button with a statistics that will be displayed on the corner of the screen. When the user clicks the button it will display a popup window. This window will display various statistics of the user which include:
 - the total number of wins the player has achieved
 - the total number of wins on each difficulty
 - the total number of successful moves the player has made throughout all game combined
 - the player's fastest win time
 - the player's average win time
+
+On the sketch below, the statistics button can be seen circled in red.
+
+<img src="img/stat_button.png">
 
 ## Beginner Language Learners
 > As a beginner language learner, I want the system to decide which vocabularies should be used for a particular match of Sudoku with a certain degree of variety in words.
