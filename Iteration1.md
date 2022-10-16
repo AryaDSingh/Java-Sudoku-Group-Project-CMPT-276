@@ -68,5 +68,9 @@ The app will feature a medium difficulty for the game. The medium difficulty wil
 
 The app will feature a hard difficulty for the game. The hard difficulty will randomly choose words that are marked as "hard" in the word bank upon starting a new game. The game can be set to the "hard" difficulty by clicking on the settings button on the top of the screen and navigating to the section labeled "difficulty" and selecting the value "hard". The new difficulty will be applied upon starting a new game.
 
+> As a advanced language learner, I want the option of mixing the words on the board and the workds i can place, so i can practice the word pairs in a new way. 
 
+The app will feature a mixed mode for the game. The mixed mode will mix the words that are display and the words that can be placed to make the game more fun. The game can be set to the "mixed" mode by clicking on the settings button on the top of the screen and navigating to the section labeled "mode" and selecting the value "mixed". The new mode will be applied upon starting a new game. The mixed mode version of the game is shown below.
+
+<img src="img/mixed_mode.png">
 
