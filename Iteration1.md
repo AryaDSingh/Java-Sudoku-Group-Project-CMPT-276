@@ -8,7 +8,7 @@ Users who are struggling to learn the game can use the help button. When the use
 
 > As a novice user, I want a start menu when booting up the app, so that the app feels more professional.
 
-Upon starting the app the user will be greeted by a start menu which will feature the title of the game near the centre of the screen in a large appealing font. Below the title the game will feature various buttons which can be selected by the user. The first option "play", will allow the user to start a game imediatley and enter the game scene. The next option will include the "settings" which displays the same type of window as the button found in the game. The last button "quit" will allow the user to leave the menu and terminate the app. A sketch of the start menu screen is shown below"
+Upon starting the app the user will be greeted by a start menu which will feature the title of the game near the center of the screen in a large appealing font. Below the title the game will feature various buttons which can be selected by the user. The first option "play", will allow the user to start a game immediately and enter the game scene. The next option will include the "settings" which displays the same type of window as the button found in the game. The last button "quit" will allow the user to leave the menu and terminate the app. A sketch of the start menu screen is shown below"
 
 <img src="img/start_menu.png"> 
 
@@ -22,7 +22,7 @@ The app will feature a hint button which will be located on the edge of the scre
 # Expert Users
 > As a expert user of the app, I want to turn off and on some of the settings, so that I can make the experience more customized to my preferences.
 
-touching the setting icon should open a new window which willl display various controls which can alter the user interface and/or change the system of the game. For example disabling the hint buttons requires the user to tap the button labled "disable hints". This will remove the hint button from the user interface making it inaccessable. The same can be done for most of the other buttons. The settings menu will be located on the edge of the screen. On the sketch below, the settings button can be seen circled in red. The popup menu is also shown below
+touching the setting icon should open a new window which will display various controls which can alter the user interface and/or change the system of the game. For example disabling the hint buttons requires the user to tap the button labeled "disable hints". This will remove the hint button from the user interface making it inaccessible. The same can be done for most of the other buttons. The settings menu will be located on the edge of the screen. On the sketch below, the settings button can be seen circled in red. The popup menu is also shown below
 
 <img src="img/settings_button.png">
 <img src="img/settings_screen.png">
@@ -52,7 +52,7 @@ The app will feature a word bank which contains word pairs from 2 different lang
 
 The app will feature a easy difficulty for the game. The easy difficulty will randomly choose words that are marked as "easy" in the word bank upon starting a new game. The game can be set to the "easy" difficulty by clicking on the settings button on the top of the screen and navigating to the section labeled "difficulty" and selecting the value "easy". The new difficulty will be applied upon starting a new game.
 
-> As a beginner language learner, I want the option of a practice mode, so i can practice learning the word pairs. 
+> As a beginner language learner, I want the option of a practice mode, so I can practice learning the word pairs. 
 
 The app will feature a practice mode for the game. The practice mode will display the word pairs at the bottom of the screen instead of just one half of the words. This will allow users to practice learning the word pairs before starting a real game. The game can be set to the "practice" mode by clicking on the settings button on the top of the screen and navigating to the section labeled "mode" and selecting the value "practice". The new mode will be applied upon starting a new game. The practice mode version of the game is shown below.
 
@@ -64,11 +64,11 @@ The app will feature a practice mode for the game. The practice mode will displa
 The app will feature a medium difficulty for the game. The medium difficulty will randomly choose words that are marked as "medium" in the word bank upon starting a new game. The game can be set to the "medium" difficulty by clicking on the settings button on the top of the screen and navigating to the section labeled "difficulty" and selecting the value "medium". The new difficulty will be applied upon starting a new game.
 
 ## Advanced Language Learner
-> As a advanced language learner, I want the option of a hard difficulty, so i can practice and play the game at my skill level.
+> As a advanced language learner, I want the option of a hard difficulty, so I can practice and play the game at my skill level.
 
 The app will feature a hard difficulty for the game. The hard difficulty will randomly choose words that are marked as "hard" in the word bank upon starting a new game. The game can be set to the "hard" difficulty by clicking on the settings button on the top of the screen and navigating to the section labeled "difficulty" and selecting the value "hard". The new difficulty will be applied upon starting a new game.
 
-> As a advanced language learner, I want the option of mixing the words on the board and the workds i can place, so i can practice the word pairs in a new way. 
+> As a advanced language learner, I want the option of mixing the words on the board and the words I can place, so I can practice the word pairs in a new way. 
 
 The app will feature a mixed mode for the game. The mixed mode will mix the words that are display and the words that can be placed to make the game more fun. The game can be set to the "mixed" mode by clicking on the settings button on the top of the screen and navigating to the section labeled "mode" and selecting the value "mixed". The new mode will be applied upon starting a new game. The mixed mode version of the game is shown below.
 
