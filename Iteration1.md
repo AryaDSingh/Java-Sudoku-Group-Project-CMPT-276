@@ -26,7 +26,7 @@ touching the setting icon should open a new window which willl display various c
 <img src="img/settings_button.png">
 <img src="img/settings_screen.png">
 
-> As an advanced language learner, I want a statistic button which displays my statistics in the game, so that I can keep track of my progress.
+> As an expert user of the app, I want a statistic button which displays my statistics in the game, so that I can keep track of my progress.
 
 The app will feature a button with a statistics that will be displayed on the corner of the screen. When the user clicks the button it will display a popup window. This window will display various statistics of the user which include:
 - the total number of wins the player has achieved
@@ -40,20 +40,26 @@ On the sketch below, the statistics button can be seen circled in red. The popup
 <img src="img/stat_button.png">
 <img src="img/stat_screen.png">
 
+> As an expert user of the app, I want to be able to add additional words into the word bank, so that i can adjust the difficulty of the game to suit my language comprehension level.
+
+The app will feature a word bank which contains word pairs from 2 different languages. The word bank will be accessible through the settings menu by scrolling to the section labeled "word bank" and pressing on the button labeled "edit" which will open up a popup window. This window will allow users to add or remove word pairs. The popup menu is also shown below
+
+<img src="img/word_screen.png">
+
 ## Beginner Language Learners
-> As a beginner language learner, I want the system to decide which vocabularies should be used for a particular match of Sudoku with a certain degree of variety in words.
+> As a beginner language learner, I want the option of a easy difficulty, so i can practice and play the game at my skill level
 
-At this level when user chooses the option of beginner language learner, the system has to come up with variety of simple words chosen randomly from the database of two different languages and display them some in the grid of 9*9 and some outside the grid.
-
+The app will feature a easy difficulty for the game. The hard difficulty will randomly choose words that are marked as "easy" in the word bank upon starting a new game. The game can be set to the "easy" difficulty by clicking on the settings button on the top of the screen and navigating to the section labeled "difficulty" and selecting the value "easy". The new difficulty will be applied upon starting a new game.
 
 ## Intermediate Language Learners
-> As an intermediate language learner, I want the system to level up the game and test me with some not so common words, so that I can learn deeper into the language I am learning.
+> As a intermediate language learner, I want the option of a medium difficulty, so i can practice and play the game at my skill level
 
-When seleting the option as Intermediate language learner, The system should automatically choose the longer or more difficult words and fill the grid randomly again for the user to play the game
-
+The app will feature a medium difficulty for the game. The hard difficulty will randomly choose words that are marked as "medium" in the word bank upon starting a new game. The game can be set to the "medium" difficulty by clicking on the settings button on the top of the screen and navigating to the section labeled "difficulty" and selecting the value "medium". The new difficulty will be applied upon starting a new game.
 
 ## Advanced Language Learner
-> As an advanced language learner, I want to be able to add additional words into the word bank, so that i can adjust the difficulty of the game to suit my language comprehension level.
+> As a advanced language learner, I want the option of a hard difficulty, so i can practice and play the game at my skill level.
 
-The system will have an option to display the default bank of words and have the ability to remove/add new words to the users preferences.
+The app will feature a hard difficulty for the game. The hard difficulty will randomly choose words that are marked as "hard" in the word bank upon starting a new game. The game can be set to the "hard" difficulty by clicking on the settings button on the top of the screen and navigating to the section labeled "difficulty" and selecting the value "hard". The new difficulty will be applied upon starting a new game.
+
+
 
