@@ -50,12 +50,18 @@ The app will feature a word bank which contains word pairs from 2 different lang
 ## Beginner Language Learners
 > As a beginner language learner, I want the option of a easy difficulty, so i can practice and play the game at my skill level
 
-The app will feature a easy difficulty for the game. The hard difficulty will randomly choose words that are marked as "easy" in the word bank upon starting a new game. The game can be set to the "easy" difficulty by clicking on the settings button on the top of the screen and navigating to the section labeled "difficulty" and selecting the value "easy". The new difficulty will be applied upon starting a new game.
+The app will feature a easy difficulty for the game. The easy difficulty will randomly choose words that are marked as "easy" in the word bank upon starting a new game. The game can be set to the "easy" difficulty by clicking on the settings button on the top of the screen and navigating to the section labeled "difficulty" and selecting the value "easy". The new difficulty will be applied upon starting a new game.
+
+> As a beginner language learner, I want the option of a practice mode, so i can practice learning the word pairs. 
+
+The app will feature a practice mode for the game. The practice mode will display the word pairs at the bottom of the screen instead of just one half of the words. This will allow users to practice learning the word pairs before starting a real game. The game can be set to the "practice" mode by clicking on the settings button on the top of the screen and navigating to the section labeled "mode" and selecting the value "practice". The new mode will be applied upon starting a new game. The practice mode version of the game is shown below.
+
+<img src="img/practice_screen.png">
 
 ## Intermediate Language Learners
 > As a intermediate language learner, I want the option of a medium difficulty, so i can practice and play the game at my skill level
 
-The app will feature a medium difficulty for the game. The hard difficulty will randomly choose words that are marked as "medium" in the word bank upon starting a new game. The game can be set to the "medium" difficulty by clicking on the settings button on the top of the screen and navigating to the section labeled "difficulty" and selecting the value "medium". The new difficulty will be applied upon starting a new game.
+The app will feature a medium difficulty for the game. The medium difficulty will randomly choose words that are marked as "medium" in the word bank upon starting a new game. The game can be set to the "medium" difficulty by clicking on the settings button on the top of the screen and navigating to the section labeled "difficulty" and selecting the value "medium". The new difficulty will be applied upon starting a new game.
 
 ## Advanced Language Learner
 > As a advanced language learner, I want the option of a hard difficulty, so i can practice and play the game at my skill level.
