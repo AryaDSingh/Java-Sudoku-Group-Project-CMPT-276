@@ -14,9 +14,10 @@ Upon starting the app the user will be greeted by a start menu which will featur
 
 > As a novice user, I want a hint button that helps me find my next move, so that I can get unstuck when im confused.
 
-The app will feature a hint button which will be located on the edge of the screen. When the user presses this button the screen will highlight an empty square on the board and indicate that a legal move can be played there. This feature can be disabled or enabled in the settings menu. On the sketch below, the hint button can be seen circled in red.
+The app will feature a hint button which will be located on the edge of the screen. When the user presses this button the screen will highlight an empty square on the board and indicate that a legal move can be played there. This feature can be disabled or enabled in the settings menu. On the sketch below, the hint button can be seen circled in red. The functionality of the hint button can also be seen there.
 
 <img src="img/hint_button.png">
+<img src="img/hint_screen.png">
 
 # Expert Users
 > As a expert user of the app, I want to turn off and on some of the settings, so that I can make the experience more customized to my preferences.
