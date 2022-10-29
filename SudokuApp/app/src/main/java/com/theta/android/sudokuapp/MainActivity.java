@@ -3,6 +3,7 @@ package com.theta.android.sudokuapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.GridView;
 
 public class MainActivity extends AppCompatActivity {
@@ -12,7 +13,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        GridView gameBoard = findViewById(R.id.gameBoard);
-        gameBoard.setAdapter(new CellAdapter(this));
+        Log.d("sudoku", "onCreate: ran7");
+        Sudoku game = new Sudoku(this, findViewById(R.id.gameBoard));
+
     }
 }
