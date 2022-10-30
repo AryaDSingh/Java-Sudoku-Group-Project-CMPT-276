@@ -15,11 +15,11 @@ public class SudokuCell {
     private final Context context;
     private String text;
 
-    public SudokuCell(Context context, String num) {
+    public SudokuCell(Context context, String word) {
         this.context =  context;
         LayoutInflater inflater = LayoutInflater.from(context);
         but = (Button) inflater.inflate(R.layout.cell, null);
-        this.setText(num);
+        this.setText(word);
 
         styleCell();
         createListener();
