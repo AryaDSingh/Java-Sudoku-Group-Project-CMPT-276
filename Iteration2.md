@@ -45,6 +45,7 @@ On the sketch below, the statistics button can be seen circled in red. The popup
 
 <img src="img/stat_button.png">
 <img src="img/stat_screen.png">
+<img src="img/Hard_words.png">
 
 > As an expert user of the app, I want to be able to add additional words into the word bank, so that i can adjust the difficulty of the game to suit my language comprehension level.
 
