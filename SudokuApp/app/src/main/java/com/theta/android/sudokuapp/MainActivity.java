@@ -13,7 +13,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d("sudoku", "onCreate: ran5");
+        // creates sudoku board
+        Log.d("SUDOKU", "ran1");
         Sudoku game = new Sudoku(this, findViewById(R.id.gameBoard));
 
     }

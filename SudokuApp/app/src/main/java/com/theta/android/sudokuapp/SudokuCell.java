@@ -14,12 +14,14 @@ public class SudokuCell {
     private final Button but;
     private final Context context;
     private String text;
+    private Sudoku parent;
 
-    public SudokuCell(Context context, String word) {
+    public SudokuCell(Context context, String word, Sudoku parent) {
+        this.parent = parent;
         this.context =  context;
         LayoutInflater inflater = LayoutInflater.from(context);
         but = (Button) inflater.inflate(R.layout.cell, null);
-        this.setText(word);
+        this.setText(word, false);
 
         styleCell();
         createListener();
@@ -29,11 +31,19 @@ public class SudokuCell {
         return but;
     }
 
+    private void setText(String text, Boolean callChange) {
+        setText(text);
+        if (callChange) {
+            parent.onCellChange(this);
+        }
+    }
+
     private void setText(String text) {
         this.text = text;
         String first2 = text.length() > 2 ? text.substring(0, 2): text;
         but.setText(first2);
     }
+
 
     private String getText() {
         return text;

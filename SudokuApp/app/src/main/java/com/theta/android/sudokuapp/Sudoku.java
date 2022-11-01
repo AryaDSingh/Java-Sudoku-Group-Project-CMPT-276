@@ -22,16 +22,40 @@ import java.util.List;
 public class Sudoku {
     private final String TAG = "sudoku";
     private final int size = 9; //side length size
-    private List<List<SudokuCell>> cells;
     private final LinearLayout board;
     private final List<Pair<String, String>> pairs = new ArrayList<>(size);
+    private List<List<SudokuCell>> cells;
+    private int cellsFull = 0;
 
     public Sudoku(Context context, ViewGroup board) {
         this.board = (LinearLayout) board;
 
         initPairs(context);
         initBoard(context);
-        //fillBoard(context);
+    }
+
+    /**
+     * Event that is called when one of the cells in the sudoku grid changes text
+     *
+     * @param cell cell that had its text changed
+     * @return
+     */
+    public void onCellChange(SudokuCell cell) {
+        cellsFull++;
+        if (cellsFull == size*size) {
+            checkWin();
+        }
+
+    }
+
+    /**
+     * Checks board cells to see if player has completed the game
+     *
+     * @param
+     * @return True if the player has won the game
+     */
+    private Boolean checkWin() {
+        return false;
     }
 
 
@@ -47,8 +71,15 @@ public class Sudoku {
                 for (int x = 0; x < items.length; x++) {
                     items[x] = items[x].replace(" ", "");
                     int pairIndex = Integer.parseInt(items[x])-1;
-                    String firstWord = pairIndex != -1 ? pairs.get(pairIndex).first: " ";
-                    SudokuCell cell = new SudokuCell(context, firstWord);
+                    String firstWord;
+                    if (pairIndex != -1) {
+                        firstWord = pairs.get(pairIndex).first;
+                        cellsFull++;
+                    }
+                    else {
+                        firstWord = "";
+                    }
+                    SudokuCell cell = new SudokuCell(context, firstWord, this);
                     row.addView(cell.getView());
                     cells.get(y).add(cell);
                 }
@@ -69,19 +100,6 @@ public class Sudoku {
         board.addView(row);
         cells.add(new ArrayList<SudokuCell>(size));
         return row;
-    }
-
-    private void fillBoard(Context context) {
-        cells = new ArrayList<List<SudokuCell>>(size);
-        for (int x = 0; x < size; x++) {
-            LinearLayout row = createRow(context);
-
-            for (int y = 0; y < size; y++) {
-                SudokuCell cell = new SudokuCell(context, Integer.toString(x * 10 + y));
-                row.addView(cell.getView());
-                cells.get(x).add(cell);
-            }
-        }
     }
 
     private void initPairs(Context context) {
