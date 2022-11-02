@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class SudokuCell {
     private final Button but;
     private final Context context;
-    private String text;
+    private String text = "";
     private Sudoku parent;
 
     public SudokuCell(Context context, String word, Sudoku parent) {
@@ -32,20 +32,30 @@ public class SudokuCell {
     }
 
     private void setText(String text, Boolean callChange) {
-        setText(text);
+        text = HelpFunc.cleanString(text);
+        int change = 0;
+        if (this.text.length() == 0 && text.length() > 0) {
+            change = 1;
+        }
+        else if (this.text.length() > 0 && text.length() == 0) {
+            change = -1;
+        }
+
+        String first2 = text.length() > 2 ? text.substring(0, 2): text;
+        this.text = text;
+        but.setText(first2);
+
         if (callChange) {
-            parent.onCellChange(this);
+            parent.onCellChange(this, change);
         }
     }
 
-    private void setText(String text) {
-        this.text = text;
-        String first2 = text.length() > 2 ? text.substring(0, 2): text;
-        but.setText(first2);
+    public void setText(String text) {
+        setText(text, true);
     }
 
 
-    private String getText() {
+    public String getText() {
         return text;
     }
 

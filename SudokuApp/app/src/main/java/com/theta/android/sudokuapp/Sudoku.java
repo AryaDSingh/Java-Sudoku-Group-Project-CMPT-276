@@ -4,18 +4,11 @@ import android.content.Context;
 import android.util.Log;
 import android.util.Pair;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.GridView;
 import android.widget.LinearLayout;
-import android.widget.TableLayout;
-import android.widget.TableRow;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,12 +19,15 @@ public class Sudoku {
     private final List<Pair<String, String>> pairs = new ArrayList<>(size);
     private List<List<SudokuCell>> cells;
     private int cellsFull = 0;
+    private final Context context;
 
     public Sudoku(Context context, ViewGroup board) {
         this.board = (LinearLayout) board;
+        this.context = context;
 
         initPairs(context);
         initBoard(context);
+        checkWin();
     }
 
     /**
@@ -40,13 +36,20 @@ public class Sudoku {
      * @param cell cell that had its text changed
      * @return
      */
-    public void onCellChange(SudokuCell cell) {
-        cellsFull++;
+    public void onCellChange(SudokuCell cell, int change) {
+        cellsFull += change;
         if (cellsFull == size*size) {
-            checkWin();
+            if (checkWin()) {
+                CharSequence text = "You Win!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
         }
 
     }
+
 
     /**
      * Checks board cells to see if player has completed the game
@@ -55,12 +58,96 @@ public class Sudoku {
      * @return True if the player has won the game
      */
     private Boolean checkWin() {
-        return false;
+        int gridSize = (int) Math.sqrt(size); //size should be a perfect square
+        for (int i = 0; i < size; i++) {
+            Boolean lineV = checkLineV(cells.get(0).get(i));
+            Boolean lineH = checkLineH(cells.get(i).get(0));
+            Boolean grid = checkGrid(cells.get((i/gridSize)*gridSize).get((i%gridSize)*gridSize));
+
+            if (!(lineV && lineH && grid)){
+                return false;
+            }
+        }
+        return true;
     }
 
+    private boolean checkLineH(SudokuCell cell) {
+        Pair<Integer,Integer> index = findIndex(cell);
+        List<Pair<String,String>> seen = new ArrayList<>();
+
+        for (SudokuCell c: cells.get(index.first)) {
+            Pair<String,String> pair = findWordPair(c);
+            if (pair == null || seen.contains(pair)) {
+                return false;
+            }
+            seen.add(pair);
+        }
+        return true;
+    }
+
+    private Boolean checkLineV(SudokuCell cell) {
+        Pair<Integer,Integer> index = findIndex(cell);
+        List<Pair<String,String>> seen = new ArrayList<>();
+
+        for (int i = 0; i < size; i++) {
+            SudokuCell c = cells.get(i).get(index.second);
+            Pair<String,String> pair = findWordPair(c);
+            if (pair == null || seen.contains(pair)) {
+                return false;
+            }
+            seen.add(pair);
+        }
+        return true;
+    }
+
+    private Boolean checkGrid(SudokuCell cell) {
+        Pair<Integer,Integer> index = findIndex(cell);
+        int gridSize = (int) Math.sqrt(size);
+        index = new Pair<>((index.first/gridSize)*gridSize,(index.second/gridSize)*gridSize); //index of first cell in grid
+        List<Pair<String, String>> seen = new ArrayList<>();
+
+        for (int y = index.first; y < index.first + gridSize; y++) {
+            for (int x = index.second; x < index.second + gridSize; x++) {
+
+                SudokuCell c = cells.get(y).get(x);
+                Pair<String, String> pair = findWordPair(c);
+                if (pair == null || seen.contains(pair)) {
+                    return false;
+                }
+                seen.add(pair);
+            }
+        }
+        return true;
+    }
+
+    private Pair<String, String> findWordPair(SudokuCell cell) {
+        String text = cell.getText();
+        //Log.d("SUDOKU", "[" + text + "] " + Integer.toString(text.length()));
+        for (Pair<String, String> pair: pairs) {
+            if (text.length() > 0) {
+                //Log.d("SUDOKU", "[" + pair.first + "] == [" + text + "]" + Boolean.toString(pair.first == text) + " " + Integer.toString((int) text.charAt(0)) + " " + Integer.toString((int) pair.first.charAt(0)) + " " + Integer.toString(pair.first.length()) + " " + Integer.toString(text.length()));
+            }
+            if (text.equals(pair.first) || text.equals(pair.second) ) {
+                return pair;
+            }
+        }
+        return null;
+    }
+
+    private Pair<Integer,Integer> findIndex(SudokuCell cell) {
+        for (int i = 0; i < cells.size(); i++) {
+            for(int j = 0; j < cells.get(i).size(); j++) {
+                if (cells.get(i).get(j) == cell) {
+                    Pair<Integer,Integer> index = new Pair<>(i, j);
+                    return index;
+                }
+            }
+        }
+        return null;
+    }
 
     private void initBoard(Context context) {
-        BufferedReader reader = readFile(context, R.raw.boardlayout1);
+        BufferedReader reader = HelpFunc.readFile(context, R.raw.boardlayout2);
         String line = "";
         int y = 0;
         cells = new ArrayList<List<SudokuCell>>(size);
@@ -103,13 +190,15 @@ public class Sudoku {
     }
 
     private void initPairs(Context context) {
-        BufferedReader reader = readFile(context, R.raw.words);
+        BufferedReader reader = HelpFunc.readFile(context, R.raw.words);
 
         String line = "";
         try {
             while ( (line = reader.readLine()) != null ) {
                 String[] items = line.split(",");
                 if (items.length == 2) {
+                    items[0] = HelpFunc.cleanString(items[0]);
+                    items[1] = HelpFunc.cleanString(items[1]);
                     pairs.add(new Pair<>(items[0], items[1]));
                 }
             }
@@ -121,10 +210,6 @@ public class Sudoku {
 
     }
 
-    private BufferedReader readFile(Context context, int file) {
-        InputStream is = context.getResources().openRawResource(file);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-        return reader;
-    }
+
 
 }
