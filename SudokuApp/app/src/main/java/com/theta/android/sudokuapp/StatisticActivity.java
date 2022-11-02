@@ -20,10 +20,10 @@ public class StatisticActivity extends AppCompatActivity {
 
         // check win and read the txt file
         // add one in csv file
-        // two parameters should be passed win and lose
-        writeAndEdit(read(), 0, 0);
+        // two parameters should be passed win and lose, either win or lose should be 1
+        writeAndEdit(read(), 0, 1);
     }
-    public void writeAndEdit(String args, int winScore, int loseScore) { // write the new value
+    public void writeAndEdit(String args, int winScore, int loseScore) { // write the new value into the file and then set the values in xml file by retrieving info from text
         try {
             FileWriter myWriter = new FileWriter("res/raw/statsCount.txt");
             String win = "", loss = "", total = "";
@@ -41,8 +41,7 @@ public class StatisticActivity extends AppCompatActivity {
             for(; i < args.length(); i++){
                     total += args.charAt(i);
             }
-            myWriter.write("Win:" + win + "Loss:"+ loss + "Total:" + total);
-            myWriter.close();
+
             if(winScore == 1) {
                 TextView setWin = findViewById(R.id.win);
                 win = String.valueOf (Integer.parseInt(win) + 1);
@@ -57,6 +56,8 @@ public class StatisticActivity extends AppCompatActivity {
             total = String.valueOf(Integer.parseInt(total) + 1);
             setTotal.setText(total);
 
+            myWriter.write("Win:" + win + "Loss:"+ loss + "Total:" + total);
+            myWriter.close();
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
