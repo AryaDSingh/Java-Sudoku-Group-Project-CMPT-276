@@ -23,7 +23,9 @@ public class StatisticActivity extends AppCompatActivity {
         // two parameters should be passed win and lose, either win or lose should be 1
         writeAndEdit(read(), 0, 1);
     }
-    public void writeAndEdit(String args, int winScore, int loseScore) { // write the new value into the file and then set the values in xml file by retrieving info from text
+
+
+    private void writeAndEdit(String args, int winScore, int loseScore) { // write the new value into the file and then set the values in xml file by retrieving info from text
         try {
             FileWriter myWriter = new FileWriter("res/raw/statsCount.txt");
             String win = "", loss = "", total = "";
@@ -63,7 +65,7 @@ public class StatisticActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-    public String read() { // gets the win, loss and total matches in the file
+    private String read() { // gets the win, loss and total matches in the file
         String getNum = "";
         try {
             File myObj = new File("res/raw/statsCount.txt");

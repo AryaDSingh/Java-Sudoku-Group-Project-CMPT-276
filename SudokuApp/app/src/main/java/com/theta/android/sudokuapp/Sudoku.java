@@ -10,6 +10,7 @@ import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class Sudoku {
@@ -20,10 +21,18 @@ public class Sudoku {
     private List<List<SudokuCell>> cells;
     private int cellsFull = 0;
     private final Context context;
+    private long startTime;
 
+    /**
+     * Event that is called when one of the cells in the sudoku grid changes text
+     *
+     * @param context context of main activity
+     * @param board layout that will contain the sudoku board
+     */
     public Sudoku(Context context, ViewGroup board) {
         this.board = (LinearLayout) board;
         this.context = context;
+        this.startTime = Calendar.getInstance().getTimeInMillis();
 
         initPairs(context);
         initBoard(context);
@@ -40,16 +49,24 @@ public class Sudoku {
         cellsFull += change;
         if (cellsFull == size*size) {
             if (checkWin()) {
-                CharSequence text = "You Win!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+                onWin();
             }
         }
 
     }
 
+    private void onWin() {
+        CharSequence text = "You Win!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
+        //time to complete game in seconds
+        long winTime = (Calendar.getInstance().getTimeInMillis() - startTime) / 1000;
+
+
+    }
 
     /**
      * Checks board cells to see if player has completed the game
