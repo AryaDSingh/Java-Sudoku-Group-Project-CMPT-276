@@ -1,10 +1,16 @@
 package com.theta.android.sudokuapp;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.util.Pair;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -17,11 +23,12 @@ public class Sudoku {
     private final String TAG = "sudoku";
     private final int size = 9; //side length size
     private final LinearLayout board;
-    private final List<Pair<String, String>> pairs = new ArrayList<>(size);
+    private final List<Pair<String, String>> pairs;
     private List<List<SudokuCell>> cells;
-    private int cellsFull = 0;
+    private int cellsFull;
     private final Context context;
     private long startTime;
+    private int moves;
 
     /**
      * Event that is called when one of the cells in the sudoku grid changes text
@@ -30,9 +37,12 @@ public class Sudoku {
      * @param board layout that will contain the sudoku board
      */
     public Sudoku(Context context, ViewGroup board) {
+        this.pairs = new ArrayList<>(size);
         this.board = (LinearLayout) board;
         this.context = context;
         this.startTime = Calendar.getInstance().getTimeInMillis();
+        this.moves = 0;
+        this.cellsFull = 0;
 
         initPairs(context);
         initBoard(context);
@@ -47,6 +57,7 @@ public class Sudoku {
      */
     public void onCellChange(SudokuCell cell, int change) {
         cellsFull += change;
+        moves++;
         if (cellsFull == size*size) {
             if (checkWin()) {
                 onWin();
@@ -56,16 +67,38 @@ public class Sudoku {
     }
 
     private void onWin() {
-        CharSequence text = "You Win!";
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-
         //time to complete game in seconds
-        long winTime = (Calendar.getInstance().getTimeInMillis() - startTime) / 1000;
+        int winTime = (int) ((Calendar.getInstance().getTimeInMillis() - startTime) / 1000);
+        int score = 10000 - (int) Math.sqrt(winTime*moves);
+        //this.moves is number of moves made to beat the game
+
+        createWinPopup(score, winTime, moves);
+    }
+
+    private void createWinPopup(int score, int time, int moves) {
 
 
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View winScreen = inflater.inflate(R.layout.win_screen, null);
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setView(winScreen);
+
+        final TextView scoreText = (TextView) winScreen.findViewById(R.id.gameScore);
+        final TextView timeText = (TextView) winScreen.findViewById(R.id.gameTime);
+        final TextView movesText = (TextView) winScreen.findViewById(R.id.gameMoves);
+        scoreText.setText(scoreText.getText().toString() + Integer.toString(score));
+        timeText.setText(timeText.getText().toString() + Integer.toString(time));
+        movesText.setText(movesText.getText().toString() + Integer.toString(moves));
+
+        alert.setCancelable(false);
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        alert.create();
+        alert.show();
     }
 
     /**
