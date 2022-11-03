@@ -24,14 +24,16 @@ public class SudokuCell {
         this.setText(word, false);
 
         styleCell();
-        createListener();
+        if (word.length() == 0) {
+            createListener();
+        }
     }
 
     public View getView() {
         return but;
     }
 
-    private void setText(String text, Boolean callChange) {
+    public void setText(String text, Boolean callChange) {
         text = HelpFunc.cleanString(text);
         int change = 0;
         if (this.text.length() == 0 && text.length() > 0) {
