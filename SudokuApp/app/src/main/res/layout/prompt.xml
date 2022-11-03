@@ -19,5 +19,5 @@
         android:ems="10"
         android:gravity="center"
         android:inputType="textPersonName"
-        android:text="Enter new word" />
+        android:hint="Enter new word" />
 </LinearLayout>

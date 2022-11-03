@@ -9,22 +9,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SudokuCell {
     private final Button but;
     private final Context context;
     private String text = "";
     private Sudoku parent;
+    private int x;
+    private int y;
 
-    public SudokuCell(Context context, String word, Sudoku parent) {
+    public SudokuCell(Context context, String word, Sudoku parent,int x, int y) {
         this.parent = parent;
         this.context =  context;
         LayoutInflater inflater = LayoutInflater.from(context);
         but = (Button) inflater.inflate(R.layout.cell, null);
         this.setText(word, false);
+        this.x=x;
+        this.y=y;
 
         styleCell();
-        createListener();
+        createListener(parent);
     }
 
     public View getView() {
@@ -66,16 +71,16 @@ public class SudokuCell {
         but.setLayoutParams(p);
     }
 
-    private void createListener() {
+    private void createListener(Sudoku parent) {
         but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createPrompt();
+                createPrompt(parent);
             }
         });
     }
 
-    private void createPrompt() {
+    private void createPrompt(Sudoku parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View prompt = inflater.inflate(R.layout.prompt, null);
         AlertDialog.Builder alert = new AlertDialog.Builder(context);
@@ -88,6 +93,18 @@ public class SudokuCell {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 setText(edit.getText().toString());
+                if(parent.checkLineH(x,y) && parent.checkLineV(x,y) && parent.checkGrid(x,y))
+                {
+                    Toast.makeText(context,"I am passed horizontally",Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(context,"I am failed horizontally",Toast.LENGTH_LONG).show();
+                    setText("");
+                }
+
+//                Toast.makeText(context,"I am at position x="+x+" and position y="+y,Toast.LENGTH_LONG).show();
+
             }
         });
         alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -100,6 +117,8 @@ public class SudokuCell {
         alert.show();
     }
 
+    private void checkError(String toString) {
+    }
 
 
 }
