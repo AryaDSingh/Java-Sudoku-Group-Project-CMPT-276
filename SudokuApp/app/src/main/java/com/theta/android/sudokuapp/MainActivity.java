@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_stat;
     private Button btn_hint;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -24,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // creates sudoku board
-        Log.d("SUDOKU", "ran5");
+        Log.d("SUDOKU", "ran8");
         Sudoku game = new Sudoku(this, findViewById(R.id.gameBoard));
 
         //Button stuff

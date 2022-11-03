@@ -1,34 +1,65 @@
 package com.theta.android.sudokuapp;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.util.Pair;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Sudoku {
     private final String TAG = "sudoku";
     private final int size = 9; //side length size
     private final LinearLayout board;
-    private final List<Pair<String, String>> pairs = new ArrayList<>(size);
+    private List<Pair<String, String>> pairs;
     private List<List<SudokuCell>> cells;
-    private int cellsFull = 0;
+    private int cellsFull;
     private final Context context;
+    private long startTime;
+    private int moves;
+    private int difficulty; //0 = easy, 1 = medium, 2=hard
 
+    private final Boolean testing = false; // change this to true if you only want 1 empty cell upon creating a game
+
+
+    /**
+     * Event that is called when one of the cells in the sudoku grid changes text
+     *
+     * @param context context of main activity
+     * @param board layout that will contain the sudoku board
+     */
     public Sudoku(Context context, ViewGroup board) {
         this.board = (LinearLayout) board;
         this.context = context;
 
-        initPairs(context);
         initBoard(context);
-        checkWin();
+        startGame();
+    }
+
+    private void startGame() {
+        this.pairs = new ArrayList<>(size);
+        this.startTime = Calendar.getInstance().getTimeInMillis();
+        this.moves = 0;
+        this.cellsFull = 0;
+        this.difficulty = 0;
+
+        initPairs(context);
+        generateBoard();
     }
 
     /**
@@ -39,18 +70,129 @@ public class Sudoku {
      */
     public void onCellChange(SudokuCell cell, int change) {
         cellsFull += change;
+        moves++;
         if (cellsFull == size*size) {
             if (checkWin()) {
-                CharSequence text = "You Win!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+                onWin();
             }
         }
 
     }
 
+    private Boolean isBoardFull(List<List<Integer>> boardLayout) {
+        for (List<Integer> i: boardLayout) {
+            if (i.contains(-1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private Boolean makeBoard(List<List<Integer>> boardLayout, List<Integer> vals ) {
+        int y=0,x=0;
+        for (int i = 0; i < size*size; i++) {
+            y = i/size;
+            x = i%size;
+            if (boardLayout.get(y).get(x) == -1) {
+                Collections.shuffle(vals);
+                int yGrid = (y/3)*3;
+                int xGrid = (x/3)*3;
+
+                for (int val: vals) {
+                    Boolean valid = true;
+                    for (int j = 0; j < size; j++) { // check grid & col
+                        if ((boardLayout.get(j).get(x) == val) || ((boardLayout.get(yGrid+(j/3)).get(xGrid+(j%3))) == val)) {
+                            valid = false;
+                            break;
+                        }
+                    }
+
+                    if (valid && !boardLayout.get(y).contains(val)) { //check row
+                        boardLayout.get(y).set(x, val);
+                        if (isBoardFull(boardLayout)) {
+                            return true;
+                        }
+                        else if (makeBoard(boardLayout, vals)) {
+                            return true;
+                        }
+                    }
+                }
+                break;
+            }
+        }
+
+        boardLayout.get(y).set(x, -1);
+        return false;
+    }
+
+    private List<List<Integer>> createBoard() {
+        List<List<Integer>> boardLayout = new ArrayList<>();
+        for (int y = 0; y < size; y++) {
+            boardLayout.add(new ArrayList<>());
+            for (int x = 0; x < size; x++) {
+                   boardLayout.get(y).add(-1);
+            }
+        }
+
+        List<Integer> vals = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            vals.add(i);
+        }
+
+        makeBoard(boardLayout, vals);
+
+        if (testing) {
+            boardLayout.get(0).set(0, -1);
+        }
+        else {
+            for (int i = 0; i < size*(difficulty+3); i++) {
+                int x = new Random().nextInt(size);
+                int y = new Random().nextInt(size);
+
+                boardLayout.get(y).set(x, -1);
+            }
+        }
+
+
+
+        return boardLayout;
+    }
+
+
+
+    private void onWin() {
+        //time to complete game in seconds
+        int winTime = (int) ((Calendar.getInstance().getTimeInMillis() - startTime) / 1000);
+        int score = 10000 - (int) Math.sqrt(winTime*moves);
+        //this.moves is number of moves made to beat the game
+
+        createWinPopup(score, winTime, moves);
+    }
+
+    private void createWinPopup(int score, int time, int moves) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View winScreen = inflater.inflate(R.layout.win_screen, null);
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setView(winScreen);
+
+        final TextView scoreText = (TextView) winScreen.findViewById(R.id.gameScore);
+        final TextView timeText = (TextView) winScreen.findViewById(R.id.gameTime);
+        final TextView movesText = (TextView) winScreen.findViewById(R.id.gameMoves);
+        scoreText.setText(scoreText.getText().toString() + Integer.toString(score));
+        timeText.setText(timeText.getText().toString() + Integer.toString(time));
+        movesText.setText(movesText.getText().toString() + Integer.toString(moves));
+
+        alert.setCancelable(false);
+        alert.setPositiveButton("Play Again", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+                startGame();
+            }
+        });
+        alert.create();
+        alert.show();
+    }
 
     /**
      * Checks board cells to see if player has completed the game
@@ -181,37 +323,40 @@ public class Sudoku {
         return null;
     }
 
-    private void initBoard(Context context) {
-        BufferedReader reader = HelpFunc.readFile(context, R.raw.boardlayout2);
-        String line = "";
-        int y = 0;
-        cells = new ArrayList<List<SudokuCell>>(size);
-        try {
-            while ( (line = reader.readLine()) != null && y < size) {
-                String[] items = line.split(",");
-                LinearLayout row = createRow(context);
-                for (int x = 0; x < items.length; x++) {
-                    items[x] = items[x].replace(" ", "");
-                    int pairIndex = Integer.parseInt(items[x])-1;
-                    String firstWord;
-                    if (pairIndex != -1) {
-                        firstWord = pairs.get(pairIndex).first;
-                        cellsFull++;
-                    }
-                    else {
-                        firstWord = "";
-                    }
-                    SudokuCell cell = new SudokuCell(context, firstWord, this,cells.get(y).size(),y);
-                    row.addView(cell.getView());
-                    cells.get(y).add(cell);
+    private void generateBoard() {
+        List<List<Integer>> boardLayout = createBoard();
+
+        for (int y = 0; y < size; y++) {
+            for (int x = 0; x < size; x++) {
+                int pairIndex = boardLayout.get(y).get(x);
+
+                String firstWord;
+                if (pairIndex != -1) {
+                    firstWord = pairs.get(pairIndex).first;
+                    cellsFull++;
                 }
-                y++;
+                else {
+                    firstWord = "";
+                }
+
+                cells.get(y).get(x).setText(firstWord, false);
             }
         }
-        catch (IOException e) {
-            Log.e(TAG, "could not init board layout");
-            e.printStackTrace();
+    }
+
+    private void initBoard(Context context) {
+        cells = new ArrayList<List<SudokuCell>>(size);
+
+        for (int y = 0; y < size; y++) {
+            LinearLayout row = createRow(context);
+            for (int x = 0; x < size; x++) {
+                SudokuCell cell = new SudokuCell(context, "", this);
+                row.addView(cell.getView());
+                cells.get(y).add(cell);
+            }
         }
+
+
     }
 
     private LinearLayout createRow(Context context) {
