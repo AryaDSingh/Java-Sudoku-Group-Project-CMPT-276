@@ -202,83 +202,49 @@ public class Sudoku {
      */
     private Boolean checkWin() {
         int gridSize = (int) Math.sqrt(size); //size should be a perfect square
-//        for (int i = 0; i < size; i++) {
-//            Boolean lineV = checkLineV(cells.get(0).get(i));
-//            Boolean lineH = checkLineH(cells.get(i).get(0));
-//            Boolean grid = checkGrid(cells.get((i/gridSize)*gridSize).get((i%gridSize)*gridSize));
-//
-//            if (!(lineV && lineH && grid)){
-//                return false;
-//            }
-//        }
-        return true;
-    }
+        for (int i = 0; i < size; i++) {
+            Boolean lineV = checkLineV(cells.get(0).get(i));
+            Boolean lineH = checkLineH(cells.get(i).get(0));
+            Boolean grid = checkGrid(cells.get((i/gridSize)*gridSize).get((i%gridSize)*gridSize));
 
-    public boolean checkLineH(int x,int y) {
-//        SudokuCell cell=cells.get(y).get(x);
-//        Pair<Integer,Integer> index = findIndex(cell);
-        Pair<Integer,Integer> index = new Pair<>(y, x);
-        String presentValue=cells.get(y).get(x).getText();
-        List<Pair<String,String>> seen = new ArrayList<>();
-
-        for(int i=0;i<cells.get(index.first).size();i++)
-        {
-            if(i==index.second)
-                continue;
-            else
-            {
-                if(cells.get(index.first).get(i).getText().equals(presentValue))
-                {
-                    return false;
-                }
-            }
-
-        }
-//        return false;
-//        HashSet<String> row=new HashSet<>();
-//
-//        for (SudokuCell c: cells.get(index.first)) {
-//            Pair<String,String> pair = findWordPair(c);
-//            if (pair == null || seen.contains(pair)) {
-//                return false;
-//            }
-//            seen.add(pair);
-//        }
-        return true;
-    }
-
-    public Boolean checkLineV(int x, int y) {
-//        SudokuCell cell=cells.get(y).get(x);
-//        Pair<Integer,Integer> index = findIndex(cell);
-        Pair<Integer,Integer> index = new Pair<>(y, x);
-        String presentValue=cells.get(y).get(x).getText();
-
-        for(int i=0;i<cells.size();i++)
-        {
-            if(i==index.first)
-                continue;
-            if(presentValue.equals(cells.get(i).get(index.second).getText()))
-            {
+            if (!(lineV && lineH && grid)){
                 return false;
             }
         }
-//
-//        List<Pair<String,String>> seen = new ArrayList<>();
-//
-//        for (int i = 0; i < size; i++) {
-//            SudokuCell c = cells.get(i).get(index.second);
-//            Pair<String,String> pair = findWordPair(c);
-//            if (pair == null || seen.contains(pair)) {
-//                return false;
-//            }
-//            seen.add(pair);
-//        }
         return true;
     }
 
-    public Boolean checkGrid(int xH,int yV) {
-//        Pair<Integer,Integer> index = findIndex(cell);
-        Pair<Integer,Integer> index = new Pair<>(yV, xH);
+    private boolean checkLineH(SudokuCell cell) {
+        Pair<Integer,Integer> index = findIndex(cell);
+        List<Pair<String,String>> seen = new ArrayList<>();
+
+        for (SudokuCell c: cells.get(index.first)) {
+            Pair<String,String> pair = findWordPair(c);
+            if (pair == null || seen.contains(pair)) {
+                return false;
+            }
+            seen.add(pair);
+        }
+        return true;
+    }
+
+    private Boolean checkLineV(SudokuCell cell) {
+        Pair<Integer,Integer> index = findIndex(cell);
+        List<Pair<String,String>> seen = new ArrayList<>();
+
+        for (int i = 0; i < size; i++) {
+            SudokuCell c = cells.get(i).get(index.second);
+            Pair<String,String> pair = findWordPair(c);
+            if (pair == null || seen.contains(pair)) {
+                return false;
+            }
+            seen.add(pair);
+        }
+        return true;
+    }
+
+    private Boolean checkGrid(SudokuCell cell) {
+        Pair<Integer,Integer> index = findIndex(cell);
         int gridSize = (int) Math.sqrt(size);
         index = new Pair<>((index.first/gridSize)*gridSize,(index.second/gridSize)*gridSize); //index of first cell in grid
         List<Pair<String, String>> seen = new ArrayList<>();
