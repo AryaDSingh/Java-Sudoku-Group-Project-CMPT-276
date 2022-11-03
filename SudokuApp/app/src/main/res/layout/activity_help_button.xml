@@ -16,7 +16,7 @@
       android:gravity="center"
       android:orientation="horizontal">
 
-    <Button
+    <TextView
         android:id="@+id/help"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -71,7 +71,6 @@ For example, in the upper left square, we know we need to add a 5 and a 6 to be 
           android:textSize="32sp" />
 
       <TextView
-          android:id="@+id/textView3"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_gravity="fill"
@@ -84,11 +83,9 @@ For example, in the upper left square, we know we need to add a 5 and a 6 to be 
 
           android:id="@+id/help_imageView1"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          app:srcCompat="@drawable/sudoku_ex_board_iteration_1" />
+          android:layout_height="wrap_content" />
 
       <TextView
-          android:id="@+id/textView3"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_gravity="fill"
@@ -101,11 +98,9 @@ For example, in the upper left square, we know we need to add a 5 and a 6 to be 
       <ImageView
           android:id="@+id/help_imageView2"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          app:srcCompat="@drawable/sudoku_ex_board_iteration_1_completed" />
+          android:layout_height="wrap_content" />
 
       <TextView
-          android:id="@+id/textView3"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_gravity="fill"
