@@ -166,6 +166,8 @@ public class Sudoku {
         int score = 10000 - (int) Math.sqrt(winTime*moves);
         //this.moves is number of moves made to beat the game
 
+        StatisticActivity.addStats(context, 1, score, winTime, this.moves);
+
         createWinPopup(score, winTime, moves);
     }
 
