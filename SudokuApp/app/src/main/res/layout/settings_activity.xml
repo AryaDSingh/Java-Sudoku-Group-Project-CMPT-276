@@ -43,7 +43,7 @@
         android:text="Dark Mode" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button_word"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Word Bank" />
