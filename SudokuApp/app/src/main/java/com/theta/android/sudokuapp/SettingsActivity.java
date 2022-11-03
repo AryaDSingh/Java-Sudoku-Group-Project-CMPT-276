@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SettingsActivity extends AppCompatActivity {
 
     private Button btn_word;
-
+    private Button btn_pair;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,19 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
+        //word_pair button
+        btn_pair = (Button) findViewById(R.id.button_pair);
+        //set the button to do stuff on click
+        btn_pair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPairButton();
+            }
+            public void openPairButton() {
+                Intent intent_pair = new Intent(SettingsActivity.this, WordPairActivity.class);
+                startActivity(intent_pair);
+            }
+        });
 
 
 

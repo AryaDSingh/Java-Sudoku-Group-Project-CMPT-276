@@ -13,47 +13,54 @@
         android:theme="@style/Theme.SudokuApp"
         tools:targetApi="31">
         <activity
-            android:parentActivityName = ".SettingsActivity"
+            android:parentActivityName=".SettingsActivity"
+            android:name=".WordPairActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".WordBankActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".SettingsActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:parentActivityName = ".MainActivity"
             android:name=".HintActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:parentActivityName = ".MainActivity"
             android:name=".StatisticActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:parentActivityName = ".MainActivity"
             android:name=".SettingsActivity"
             android:exported="false"
-            android:label="@string/title_activity_settings">
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:parentActivityName = ".MainActivity"
             android:name=".HelpActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
