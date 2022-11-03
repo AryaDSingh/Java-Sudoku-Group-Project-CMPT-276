@@ -46,6 +46,7 @@ public class Sudoku {
     public Sudoku(Context context, ViewGroup board) {
         this.board = (LinearLayout) board;
         this.context = context;
+        this.difficulty = SettingsActivity.readDifficulty(context);
 
         initBoard(context);
         startGame();
@@ -56,7 +57,6 @@ public class Sudoku {
         this.startTime = Calendar.getInstance().getTimeInMillis();
         this.moves = 0;
         this.cellsFull = 0;
-        this.difficulty = 0;
 
         initPairs(context);
         generateBoard();

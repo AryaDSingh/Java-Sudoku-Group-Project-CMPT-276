@@ -14,30 +14,31 @@
         android:text="Difficulty Level" />
 
     <RadioGroup
+        android:id="@+id/difficulty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/easyBut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Easy" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/mediumBut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Medium" />
 
         <RadioButton
-            android:id="@+id/radioButton4"
+            android:id="@+id/hardBut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hard" />
     </RadioGroup>
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/colormode"
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:text="Dark Mode" />

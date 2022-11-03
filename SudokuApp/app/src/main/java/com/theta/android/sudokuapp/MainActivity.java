@@ -2,12 +2,12 @@ package com.theta.android.sudokuapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
     //button stuff
@@ -18,11 +18,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setLayout();
 
         // creates sudoku board
         Log.d("SUDOKU", "ran8");
@@ -93,4 +92,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    private void setLayout() {
+        if (SettingsActivity.readColorMode(this)) {
+            LinearLayout header = findViewById(R.id.mainHeader);
+            LinearLayout footer = findViewById(R.id.mainFooter);
+            LinearLayout root = findViewById(R.id.root);
+
+            int color = getResources().getColor(R.color.dark);
+            header.setBackgroundColor(color);
+            footer.setBackgroundColor(color);
+            root.setBackgroundColor(color);
+        }
+    }
+
 }
