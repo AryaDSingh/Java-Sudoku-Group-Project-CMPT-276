@@ -4,10 +4,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class SudokuCellTest {
+public class SettingsActivityTest {
 
     @Test
-    public void getView() {
+    public void onCreate() {
         int testValue = 0;
         int expectedValue = 0;
 
@@ -15,7 +15,7 @@ public class SudokuCellTest {
     }
 
     @Test
-    public void setText() {
+    public void setDifficulty() {
         int testValue = 0;
         int expectedValue = 0;
 
@@ -23,7 +23,7 @@ public class SudokuCellTest {
     }
 
     @Test
-    public void getText() {
+    public void setColorMode() {
         int testValue = 0;
         int expectedValue = 0;
 
@@ -31,7 +31,7 @@ public class SudokuCellTest {
     }
 
     @Test
-    public void styleCell(){
+    public void readDifficulty() {
         int testValue = 0;
         int expectedValue = 0;
 
@@ -39,19 +39,10 @@ public class SudokuCellTest {
     }
 
     @Test
-    public void createListener(){
+    public void readColorMode() {
         int testValue = 0;
         int expectedValue = 0;
 
         assertEquals(testValue, expectedValue);
     }
-
-    @Test
-    public void createPrompt() {
-        int testValue = 0;
-        int expectedValue = 0;
-
-        assertEquals(testValue, expectedValue);
-    }
-
 }
