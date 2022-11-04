@@ -16,7 +16,7 @@
       android:gravity="center"
       android:orientation="horizontal">
 
-    <Button
+    <TextView
         android:id="@+id/help"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -71,7 +71,6 @@ For example, in the upper left square, we know we need to add a 5 and a 6 to be 
           android:textSize="32sp" />
 
       <TextView
-          android:id="@+id/textView3"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_gravity="fill"

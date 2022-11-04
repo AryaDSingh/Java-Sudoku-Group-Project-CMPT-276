@@ -46,6 +46,7 @@ public class Sudoku {
     public Sudoku(Context context, ViewGroup board) {
         this.board = (LinearLayout) board;
         this.context = context;
+        this.difficulty = SettingsActivity.readDifficulty(context);
 
         initBoard(context);
         startGame();
@@ -56,7 +57,6 @@ public class Sudoku {
         this.startTime = Calendar.getInstance().getTimeInMillis();
         this.moves = 0;
         this.cellsFull = 0;
-        this.difficulty = 0;
 
         initPairs(context);
         generateBoard();
@@ -165,6 +165,8 @@ public class Sudoku {
         int winTime = (int) ((Calendar.getInstance().getTimeInMillis() - startTime) / 1000);
         int score = 10000 - (int) Math.sqrt(winTime*moves);
         //this.moves is number of moves made to beat the game
+
+        StatisticActivity.addStats(context, 1, score, winTime, this.moves);
 
         createWinPopup(score, winTime, moves);
     }
