@@ -1,13 +1,13 @@
 ## Tablet User
-> As a Tablet user I want sudoku game to adjust its font size to according to the bigscreen and display the longer words in the cells
+> As a language learner practing at home, I want sudoku game to adjust its font size so it is better displayed for my tablets larger screen
 
-Students who want to use the sudoku app at home on their tablets will not have difficulty reading longer words because of the bigger size of the screen. When the userw will open the app on the bigger screen it will detect it automatically to display cells longer in length and show the words clearly which might not be possible on the phone.
+When the user opens the app on their tablets the app will automatically display cells in a larger font, resulting in the words in each cell being displayed in a larger and more convenient manner. Language learners who would like to use the sudoku app on their tablets will not have difficulty reading longer words because of the bigger size of the fonts on the screen. 
 
 <img src="img/Tablet.png">
 
 > As a vocabulary learner taking the bus, I want to use my phone in landscape mode for Sudoku vocabulary practice, so that longer words are displayed in a larger font than standard mode.
 
-As a new language learner, user will have to see the words in bigger format to better understand them so when the user change orientation of the phone in landscape mode the cell width will increase with the font size of the words in it. 
+For language learner users who prefer to use landscape mode, the app will detect the orientation of the user's device and accordingly, display some words(longer ones)in a more convenient(larger)font.
 
 <img src="img/Lnagscape.png"> 
 
@@ -15,7 +15,7 @@ As a new language learner, user will have to see the words in bigger format to b
 
 > As a teacher, I want to specify a list of word pairs for my students to practice this week.
 
-In the "Settings" the user will have the option which will say "Word Bank". After clicking on this option device will open a window showing 18 text fields. 9 on one side and other 9 on another. User will be able to write 9 words of language students know and 9 words of language Teacher wants students to practice. These will be added to the app (teacher must enter in all 18 text fields) and reterieved later while practising.
+In the "Settings" screen, the user will have the option to click on "Word Bank". After clicking on this option, the device will open a window showing 18 text fields. Nine on one side and the other nine on the other side. The user will be able to modify the text fields according to what words they would like to learn. On one side, nine words of their native language and on the other side nine words of the language they are learning. They will then be added to the app and can be retrieved for practice later. For example, a teacher could specify a list of word pairs, and it is up to the student(user) to modify the text fields and practice those new word pairs.  
 
 <img src="img/settings_button.png">
 <img src="img/settings_screen.png">
@@ -25,7 +25,7 @@ In the "Settings" the user will have the option which will say "Word Bank". Afte
 
 > As a student working with a textbook, I want to load pairs of words to practice from each chapter of the book.
 
-In the "Settings" the user will have the option which will say "Practise Pairs". After clicking on this option device will open a window showing 2 text fields. 1 on one side and other 1 on another. User will be able to write 1 words of language they know and 1 word of language user wants to practice. These will be added to the app and reterieved later while practising.
+In the "Settings" screen the user will have the option to click on "Practice Pairs". After clicking on this option, the device will open a window showing 2 text fields. One on one side and the other on the other side. The user will be able to write a word of their native language and a word of language the user wants to practice. These will be added to the app and retrieved later while practicing.
 
 
 <img src="img/settings_button.png">
@@ -34,11 +34,11 @@ In the "Settings" the user will have the option which will say "Practise Pairs".
 
 > As a student, I want the Sudoku app to keep track of the vocabulary words that I am having difficulty recognizing so that they will be used more often in my practice puzzles.
 
-The app will feature a button with a statistics that will be displayed on the corner of the screen. When the user clicks the button it will display a popup window. This window will display various statistics of the user which include:
+The app will feature a button called "Statistics" that will be displayed on the corner of the screen. When the user clicks the button it will display a popup window. This window will display various statistics of the user which include:
 - the total number of wins the player has achieved
 - the total number of wins on each difficulty
-- the words user found difficulty recognizing or made mistakes
-- the app will keep track of those words and display test the user more often on these words
+- the words the user found difficulty recognizing or made mistakes
+the app will keep track of the words that the user often does not recognize and display these words more often in their practice games
 
 
 On the sketch below, the statistics button can be seen circled in red. The popup menu is also shown below
