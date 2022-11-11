@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
+    private final String TAG = "SUDOKU";
     //button stuff
     private Button btn_help;
     private Button btn_settings;
@@ -24,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
         setLayout();
 
         // creates sudoku board
-        Log.d("SUDOKU", "ran8");
-        Sudoku game = new Sudoku(this, findViewById(R.id.gameBoard));
+        Log.d(TAG, "ran2");
+        cSudoku game = new cSudoku(this, findViewById(R.id.gameBoard));
 
         //Button stuff
 
