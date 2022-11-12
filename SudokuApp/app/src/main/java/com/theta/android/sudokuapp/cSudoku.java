@@ -31,7 +31,10 @@ public class cSudoku {
 
     private void startGame(Boolean isReplay) {
         int difficulty = SettingsActivity.readDifficulty(context);
-        List<String> pairLines = HelpFunc.readFile(context, R.raw.words);
+        List<String> pairLines = cWordBank.getMainPairs(context);
+        if (pairLines.size() != sudoku.getSize()) {
+            pairLines = HelpFunc.readFile(context, R.raw.words);
+        }
 
         sudoku.setDifficulty(difficulty);
         sudoku.initPairs(pairLines);
@@ -62,8 +65,7 @@ public class cSudoku {
         for (int y = 0; y < size; y++) {
             LinearLayout row = createRow(size);
             for (int x = 0; x < size; x++) {
-                cSudokuCell cell = new cSudokuCell(context, this);
-                row.addView(cell.getView());
+                cSudokuCell cell = new cSudokuCell(context, this, row);
                 cells.get(y).add(cell);
             }
         }

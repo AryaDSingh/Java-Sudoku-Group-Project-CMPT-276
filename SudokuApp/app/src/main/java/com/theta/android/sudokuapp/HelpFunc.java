@@ -16,13 +16,15 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.function.Function;
 
 public final class HelpFunc {
     private HelpFunc() {
     }
 
     public static String cleanString(String s) {
-        return s.replaceAll("[\u200B-\u200D\uFEFF]", "").trim();
+        return s.replaceAll("[\u200B-\u200D\uFEFF]", "").trim().replace(" ","");
     }
 
     public static List<String> readFile(Context context, int file) {
@@ -44,6 +46,7 @@ public final class HelpFunc {
 
         return lines;
     }
+
 
 }
 
