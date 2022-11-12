@@ -24,7 +24,7 @@ public final class HelpFunc {
     }
 
     public static String cleanString(String s) {
-        return s.replaceAll("[\u200B-\u200D\uFEFF]", "").trim();
+        return s.replaceAll("[\u200B-\u200D\uFEFF]", "").trim().replace(" ","");
     }
 
     public static List<String> readFile(Context context, int file) {

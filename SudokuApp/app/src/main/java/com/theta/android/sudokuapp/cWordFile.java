@@ -5,20 +5,27 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 
 public class cWordFile {
     private Context context;
     private Button but;
     private Button delBut;
+    private CheckBox checkBut;
     private LinearLayout butParent;
     private LinearLayout layout;
     private cWordBank parent;
     private Boolean isFile;
     private String text;
 
+    public void setCheckBox(Boolean bool) {
+        checkBut.setChecked(bool);
+        checkBut.setClickable(!bool);
+    }
+
     public View getView() {
-        return but;
+        return butParent;
     }
 
     public Boolean isFile() {
@@ -31,7 +38,7 @@ public class cWordFile {
         this.isFile = isFile;
         this.text = text;
         this.layout = layout;
-        createBut(text, layout);
+        createBut(layout);
 
         createListener();
     }
@@ -40,9 +47,10 @@ public class cWordFile {
         return text;
     }
 
-    private void createBut(String text, LinearLayout parent) {
+    private void createBut(LinearLayout parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
         butParent = (LinearLayout)inflater.inflate(R.layout.wordbankbutton, parent, false);
+        checkBut = (CheckBox) butParent.getChildAt(0);
         but = (Button) butParent.getChildAt(1);
         delBut = (Button) butParent.getChildAt(2);
 
@@ -68,5 +76,11 @@ public class cWordFile {
             layout.removeView(butParent);
             parent.removeFile(this);
         });
+
+        if (isFile) {
+            checkBut.setOnClickListener(view -> {
+                parent.setMainPairs(this);
+            });
+        }
     }
 }

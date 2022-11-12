@@ -50,7 +50,7 @@ public class WordBankActivity extends AppCompatActivity {
         final EditText edit = prompt.findViewById(R.id.editText);
 
         alert.setCancelable(false);
-        alert.setPositiveButton("Save", (dialogInterface, i) -> fileSystem.addFile(edit.getText().toString(), isFile));
+        alert.setPositiveButton("Save", (dialogInterface, i) -> fileSystem.addFile(edit.getText().toString(), isFile, false));
         alert.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.cancel());
         alert.create();
         alert.show();

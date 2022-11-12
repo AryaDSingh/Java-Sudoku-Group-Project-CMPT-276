@@ -31,7 +31,10 @@ public class cSudoku {
 
     private void startGame(Boolean isReplay) {
         int difficulty = SettingsActivity.readDifficulty(context);
-        List<String> pairLines = HelpFunc.readFile(context, R.raw.words);
+        List<String> pairLines = cWordBank.getMainPairs(context);
+        if (pairLines.size() != sudoku.getSize()) {
+            pairLines = HelpFunc.readFile(context, R.raw.words);
+        }
 
         sudoku.setDifficulty(difficulty);
         sudoku.initPairs(pairLines);
