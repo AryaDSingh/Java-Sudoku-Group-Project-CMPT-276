@@ -62,7 +62,8 @@ public class cSudoku {
         for (int y = 0; y < size; y++) {
             LinearLayout row = createRow(size);
             for (int x = 0; x < size; x++) {
-                cSudokuCell cell = new cSudokuCell(context, this, row);
+                cSudokuCell cell = new cSudokuCell(context, this);
+                row.addView(cell.getView());
                 cells.get(y).add(cell);
             }
         }

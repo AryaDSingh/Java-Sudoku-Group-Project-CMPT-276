@@ -9,7 +9,14 @@ import android.content.Intent;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import kotlin.Pair;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -17,7 +24,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.settings_activity);
 
         Switch colorMode = (Switch) findViewById(R.id.colormode);
         colorMode.setChecked(readColorMode(this));
