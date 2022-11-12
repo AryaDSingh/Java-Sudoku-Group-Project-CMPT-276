@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setLayout();
 
         // creates sudoku board
-        Log.d(TAG, "ran2");
+        Log.d(TAG, "ran3");
         cSudoku game = new cSudoku(this, findViewById(R.id.gameBoard));
 
         //Button stuff

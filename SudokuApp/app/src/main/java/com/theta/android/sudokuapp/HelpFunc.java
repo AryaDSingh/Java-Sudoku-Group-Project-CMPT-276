@@ -16,6 +16,8 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.function.Function;
 
 public final class HelpFunc {
     private HelpFunc() {
@@ -44,6 +46,7 @@ public final class HelpFunc {
 
         return lines;
     }
+
 
 }
 

@@ -7,6 +7,9 @@
     <string name="hint">Hint</string>
     <string name="title_activity_settings">SettingsActivity</string>
 
+    <string name="backFolder">&lt; &#x1f4c1;</string>
+    <string name="delete">&#x274c;</string>
+
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>

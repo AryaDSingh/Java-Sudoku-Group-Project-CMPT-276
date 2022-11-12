@@ -18,24 +18,20 @@ public class cSudokuCell {
     private Boolean enabled = true;
 
 
-    public cSudokuCell(Context context, cSudoku parent) {
+    public cSudokuCell(Context context, cSudoku parent, LinearLayout butParent) {
         this.parent = parent;
         this.context = context;
         this.cell = new SudokuCell();
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        but = (Button) inflater.inflate(R.layout.cell, null);
-        styleCell();
+        but = (Button) inflater.inflate(R.layout.cell, butParent, false);
+        butParent.addView(but);
 
         createListener();
     }
 
     public void setEnabled(boolean bool) {
         this.enabled = bool;
-    }
-
-    public View getView() {
-        return but;
     }
 
     public String getText() {
@@ -55,12 +51,6 @@ public class cSudokuCell {
         }
     }
 
-    private void styleCell() { //I have no idea how to style stuff
-        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT);
-        p.weight = 1;
-        p.setMargins(2, 2, 2, 2);
-        but.setLayoutParams(p);
-    }
 
     private void createListener() {
         but.setOnClickListener(new View.OnClickListener() {
@@ -78,11 +68,13 @@ public class cSudokuCell {
         View prompt = inflater.inflate(R.layout.prompt, null);
         AlertDialog.Builder alert = new AlertDialog.Builder(context);
         alert.setView(prompt);
-        final TextView currWord = prompt.findViewById(R.id.currentWord);
-        currWord.setText(currWord.getText().toString() + this.getText());
+
+        final TextView title = prompt.findViewById(R.id.title);
+        title.setText("Current word: " + this.getText());
         final EditText edit = prompt.findViewById(R.id.editText);
+
         alert.setCancelable(false);
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        alert.setPositiveButton("Save", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 setText(edit.getText().toString(), true);
