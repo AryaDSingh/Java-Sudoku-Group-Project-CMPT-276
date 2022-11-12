@@ -11,8 +11,8 @@ import java.util.List;
 public class cWordBank {
     private LinearLayout layout;
     private Context context;
-    private String dir = "";
-    private final String rootDir = "";
+    private String dir = "~/";
+    private final String rootDir = "~/";
     private List<cWordFile> fileList;
 
     public void removeFile(cWordFile f) {
