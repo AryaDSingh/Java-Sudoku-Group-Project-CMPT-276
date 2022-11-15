@@ -1,5 +1,6 @@
 package com.theta.android.sudokuapp;
 
+import android.util.Log;
 import android.util.Pair;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -8,9 +9,9 @@ import java.util.List;
 import java.util.Random;
 
 public class Sudoku {
-    private final int size = 9; //side length size
-    private final int gridH = (int) Math.sqrt(size);
-    private final int gridW = (int) Math.sqrt(size);
+    private int size; //side length size
+    private int gridH;// this should be smaller than (or equal) to gridW
+    private int gridW;// this should be greater than (or equal) to gridW
     private int difficulty; //0 = easy, 1 = medium, 2=hard
     private List<Pair<String, String>> pairs;
     private List<List<String>> cells;
@@ -33,6 +34,31 @@ public class Sudoku {
 
     public String getWordAt(int y, int x) {
         return cells.get(y).get(x);
+    }
+
+    public void setSize(int sizeId) {
+        switch (sizeId) {
+            case 0:
+                size = 4;
+                gridH = 2;
+                gridW = 2;
+                break;
+            case 1:
+                size = 6;
+                gridH = 2;
+                gridW = 3;
+                break;
+            case 2:
+                size = 9;
+                gridH = 3;
+                gridW = 3;
+                break;
+            case 3:
+                size = 12;
+                gridH = 3;
+                gridW = 4;
+                break;
+        }
     }
 
     public void setDifficulty(final int difficulty) {
@@ -66,12 +92,12 @@ public class Sudoku {
             if (boardLayout.get(y).get(x) == -1) {
                 Collections.shuffle(vals);
                 int yGrid = (y/gridH)*gridH;
-                int xGrid = (x/gridH)*gridH;
+                int xGrid = (x/gridW)*gridW;
 
                 for (int val: vals) {
                     Boolean valid = true;
                     for (int j = 0; j < size; j++) { // check grid & col
-                        if ((boardLayout.get(j).get(x) == val) || ((boardLayout.get(yGrid+(j/gridH)).get(xGrid+(j%gridH))) == val)) {
+                        if ((boardLayout.get(j).get(x) == val) || ((boardLayout.get(yGrid+(j%gridH)).get(xGrid+(j/gridH))) == val)) {
                             valid = false;
                             break;
                         }
@@ -133,11 +159,10 @@ public class Sudoku {
      * @return True if the player has won the game
      */
     public Boolean checkWin() {
-        int gridSize = (int) Math.sqrt(size); //size should be a perfect square
         for (int i = 0; i < size; i++) {
             Boolean lineV = checkLineV(new Pair<>(0, i));
             Boolean lineH = checkLineH(new Pair<>(i, 0) );
-            Boolean grid = checkGrid(new Pair<>((i/gridSize)*gridSize, (i%gridSize)*gridSize));
+            Boolean grid = checkGrid(new Pair<>((i/gridH)*gridH, (i%gridW)*gridW));
 
             if (!(lineV && lineH && grid)){
                 return false;
@@ -175,12 +200,11 @@ public class Sudoku {
     }
 
     private Boolean checkGrid(Pair<Integer,Integer> index) {
-        int gridSize = (int) Math.sqrt(size);
-        index = new Pair<>((index.first/gridSize)*gridSize,(index.second/gridSize)*gridSize); //index of first cell in grid
+        index = new Pair<>((index.first/gridH)*gridH,(index.second/gridW)*gridW); //index of first cell in grid
         List<Pair<String, String>> seen = new ArrayList<>();
 
-        for (int y = index.first; y < index.first + gridSize; y++) {
-            for (int x = index.second; x < index.second + gridSize; x++) {
+        for (int y = index.first; y < index.first + gridH; y++) {
+            for (int x = index.second; x < index.second + gridW; x++) {
 
                 String word = cells.get(y).get(x);
                 Pair<String, String> pair = findWordPair(word);

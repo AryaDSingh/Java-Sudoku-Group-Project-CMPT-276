@@ -3,66 +3,50 @@ package com.theta.android.sudokuapp;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class SettingsActivity extends AppCompatActivity {
 
+    private Switch darkModeBut;
+
+    private List<Integer> diffIds = new ArrayList<Integer>(Arrays.asList(R.id.easyBut, R.id.mediumBut, R.id.hardBut));
+    private RadioGroup diffGroup;
+
+    private List<Integer> sizeIds = new ArrayList<Integer>(Arrays.asList(R.id.size4, R.id.size6, R.id.size9, R.id.size12));
+    private RadioGroup sizeGroup;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveSettings();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        Switch colorMode = (Switch) findViewById(R.id.colormode);
-        colorMode.setChecked(readColorMode(this));
+        diffGroup = (RadioGroup) findViewById(R.id.difficulty);
+        darkModeBut = (Switch) findViewById(R.id.colormode);
+        sizeGroup = (RadioGroup) findViewById(R.id.sudokuSize);
 
-        colorMode.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                setColorMode(colorMode.isChecked());
-             }
-        });
+        diffGroup.check(diffIds.get(readDifficulty(this)));
+        darkModeBut.setChecked(readColorMode(this));
+        sizeGroup.check(sizeIds.get(readSize(this)));
 
-
-                RadioGroup diffGroup = (RadioGroup) findViewById(R.id.difficulty);
-        switch(readDifficulty(this))
-        {
-            case 0:
-                diffGroup.check(R.id.easyBut);
-                break;
-            case 1:
-                diffGroup.check(R.id.mediumBut);
-                break;
-            case 2:
-                diffGroup.check(R.id.hardBut);
-                break;
-        }
-
-        diffGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId)
-            {
-                switch(checkedId)
-                {
-                    case R.id.easyBut:
-                        setDifficulty(0);
-                        break;
-                    case R.id.mediumBut:
-                        setDifficulty(1);
-                        break;
-                    case R.id.hardBut:
-                        setDifficulty(2);
-                        break;
-                }
-            }
-        });
 
         //word_bank button
         Button btn_word = (Button) findViewById(R.id.button_word);
@@ -95,31 +79,35 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
-    private void setDifficulty(int level) {
-        SharedPreferences prefs = this.getSharedPreferences("Difficulty", Context.MODE_PRIVATE);
+    private void saveSettings() {
+        SharedPreferences prefs = this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
-        editor.putInt("value", level);
+        int difficulty = diffIds.indexOf(diffGroup.getCheckedRadioButtonId());
+
+        int boardSize = sizeIds.indexOf(sizeGroup.getCheckedRadioButtonId());
+
+        Boolean darkMode = darkModeBut.isChecked();
+
+        editor.putInt("difficulty", difficulty);
+        editor.putBoolean("darkmode", darkMode);
+        editor.putInt("boardsize", boardSize);
         editor.commit();
     }
 
     public static int readDifficulty(Context context) {
-        SharedPreferences prefs = context.getSharedPreferences("Difficulty", Context.MODE_PRIVATE);
-        return prefs.getInt("value", 0);
-    }
-
-
-    private void setColorMode(Boolean value) {
-        SharedPreferences prefs = this.getSharedPreferences("ColorMode", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-
-        editor.putBoolean("value", value);
-        editor.commit();
+        SharedPreferences prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        return prefs.getInt("difficulty", 0);
     }
 
     public static Boolean readColorMode(Context context) {
-        SharedPreferences prefs = context.getSharedPreferences("ColorMode", Context.MODE_PRIVATE);
-        return prefs.getBoolean("value", false);
+        SharedPreferences prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        return prefs.getBoolean("darkmode", false);
+    }
+
+    public static int readSize(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        return prefs.getInt("boardsize", 2);
     }
 
 }
