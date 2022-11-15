@@ -162,7 +162,7 @@ public class Sudoku {
         for (int i = 0; i < size; i++) {
             Boolean lineV = checkLineV(new Pair<>(0, i));
             Boolean lineH = checkLineH(new Pair<>(i, 0) );
-            Boolean grid = checkGrid(new Pair<>((i/gridH)*gridH, (i%gridW)*gridW));
+            Boolean grid = checkGrid(new Pair<>((i/gridH)*gridH, (i%gridH)*gridH));
 
             if (!(lineV && lineH && grid)){
                 return false;
@@ -205,7 +205,6 @@ public class Sudoku {
 
         for (int y = index.first; y < index.first + gridH; y++) {
             for (int x = index.second; x < index.second + gridW; x++) {
-
                 String word = cells.get(y).get(x);
                 Pair<String, String> pair = findWordPair(word);
                 if (pair == null || seen.contains(pair)) {
