@@ -93,6 +93,8 @@ public class SettingsActivity extends AppCompatActivity {
         editor.putBoolean("darkmode", darkMode);
         editor.putInt("boardsize", boardSize);
         editor.commit();
+
+        cSudoku.deleteSave(this);
     }
 
     public static int readDifficulty(Context context) {

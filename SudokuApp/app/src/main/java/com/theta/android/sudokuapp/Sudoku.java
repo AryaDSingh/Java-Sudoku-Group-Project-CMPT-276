@@ -18,7 +18,7 @@ public class Sudoku {
     private long startTime;
     private int moves;
 
-    private final Boolean testing = false; // change this to true if you only want 1 empty cell upon creating a game
+    private final Boolean testing = true; // change this to true if you only want 1 empty cell upon creating a game
 
     public int getMoves() {
         return moves;
@@ -36,30 +36,30 @@ public class Sudoku {
         return cells.get(y).get(x);
     }
 
+
     public void setSize(int sizeId) {
-        switch (sizeId) {
-            case 0:
-                size = 4;
-                gridH = 2;
-                gridW = 2;
-                break;
-            case 1:
-                size = 6;
-                gridH = 2;
-                gridW = 3;
-                break;
-            case 2:
-                size = 9;
-                gridH = 3;
-                gridW = 3;
-                break;
-            case 3:
-                size = 12;
-                gridH = 3;
-                gridW = 4;
-                break;
+        if (sizeId == 0 || sizeId == 4) {
+            size = 4;
+            gridH = 2;
+            gridW = 2;
+        }
+        else if (sizeId == 1 || sizeId == 6) {
+            size = 6;
+            gridH = 2;
+            gridW = 3;
+        }
+        else if (sizeId == 2 || sizeId == 9) {
+            size = 9;
+            gridH = 3;
+            gridW = 3;
+        }
+        else{
+            size = 12;
+            gridH = 3;
+            gridW = 4;
         }
     }
+
 
     public void setDifficulty(final int difficulty) {
         this.difficulty = difficulty;
@@ -83,6 +83,28 @@ public class Sudoku {
         return true;
     }
 
+    public void loadSave(String layout) {
+        cells = new ArrayList<>();
+        String[] cellStrings = layout.split(",");
+        Log.d("SUDOKU", "string: " + layout + " len: " + cellStrings.length + " arr: " + cellStrings);
+        for (int y = 0; y < size; y++) {
+            cells.add(new ArrayList<>());
+            for (int x = 0; x < size; x++) {
+                cells.get(y).add(cellStrings[y*size+x].trim());
+            }
+        }
+    }
+
+    public String getSaveString() {
+        String s = "";
+        for (List<String> row: cells) {
+            for(String cell: row) {
+                s = s + cell + " ,";
+            }
+        }
+        s = s.substring(0, s.length()-1);
+        return s;
+    }
 
     private Boolean makeBoard(List<List<Integer>> boardLayout, List<Integer> vals ) {
         int y=0,x=0;

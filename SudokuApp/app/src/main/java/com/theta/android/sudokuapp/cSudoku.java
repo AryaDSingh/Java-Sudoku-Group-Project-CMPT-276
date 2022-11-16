@@ -3,6 +3,7 @@ package com.theta.android.sudokuapp;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,14 @@ public class cSudoku {
     private final LinearLayout board;
     private List<List<cSudokuCell>> cells;
     private Context context;
+    private Boolean isWinScreen = false;
+
+    public void onStop() {
+        if (!isWinScreen) {
+            saveGame();
+        }
+
+    }
 
     public cSudoku(Context context, ViewGroup board) {
         this.context = context;
@@ -30,17 +39,18 @@ public class cSudoku {
     }
 
     private void startGame(Boolean isReplay) {
+        isWinScreen = false;
         int sizeId = SettingsActivity.readSize(context);
         int difficulty = SettingsActivity.readDifficulty(context);
+        sudoku.setSize(sizeId);
+        sudoku.setDifficulty(difficulty);
+
         List<String> pairLines = cWordBank.getMainPairs(context);
         if (pairLines.size() != sudoku.getSize()) {
             pairLines = HelpFunc.readFile(context, R.raw.words);
         }
-
-        sudoku.setSize(sizeId);
-        sudoku.setDifficulty(difficulty);
         sudoku.initPairs(pairLines);
-        sudoku.generateBoard();
+        loadGame();
         if (!isReplay) {
             initBoard();
         }
@@ -85,6 +95,8 @@ public class cSudoku {
 
     public void onCellChange(cSudokuCell cell) {
         if (sudoku.onCellChange(findIndex(cell), cell.getText())) {
+            isWinScreen = true;
+            deleteSave(context);
             int score = sudoku.getScore();
             int winTime = sudoku.getTime();
             int moves = sudoku.getMoves();
@@ -127,5 +139,38 @@ public class cSudoku {
         }
         return null;
     }
+
+    public void saveGame() {
+        SharedPreferences prefs = context.getSharedPreferences("save", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        int size = sudoku.getSize();
+        String boardLayout = sudoku.getSaveString();
+
+        editor.putString("boardLayout", boardLayout);
+        editor.commit();
+    }
+
+    public static void deleteSave(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("save", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putString("boardLayout", "");
+        editor.commit();
+    }
+
+    private void loadGame() {
+        SharedPreferences prefs = context.getSharedPreferences("save", Context.MODE_PRIVATE);
+
+        String boardlayout = prefs.getString("boardLayout", "");
+
+        if (boardlayout.equals("")) {
+            sudoku.generateBoard();
+        }
+        else {
+            sudoku.loadSave(boardlayout);
+        }
+    }
+
 
 }

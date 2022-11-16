@@ -12,10 +12,17 @@ import android.widget.LinearLayout;
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "SUDOKU";
     //button stuff
+    private cSudoku game;
     private Button btn_help;
     private Button btn_settings;
     private Button btn_stat;
     private Button btn_hint;
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        game.onStop();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         setLayout();
 
         // creates sudoku board
-        Log.d(TAG, "ran3");
-        cSudoku game = new cSudoku(this, findViewById(R.id.gameBoard));
+        Log.d(TAG, "ran1");
+        game = new cSudoku(this, findViewById(R.id.gameBoard));
 
         //Button stuff
 
