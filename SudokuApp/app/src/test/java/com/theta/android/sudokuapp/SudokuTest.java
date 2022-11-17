@@ -20,10 +20,18 @@ public class SudokuTest {
     @Test
     public void setSize4x4() {
         int testValue = 4;
+        int testValue1 = 0;
+
         int expectedValue = 4;
+
         Sudoku sudoku = new Sudoku();
+        Sudoku sudoku1 = new Sudoku();
 
         sudoku.setSize(testValue);
+
+        assertEquals(sudoku.getSize(), expectedValue);;
+
+        sudoku1.setSize(testValue1);
 
         assertEquals(sudoku.getSize(), expectedValue);;
 
@@ -32,20 +40,36 @@ public class SudokuTest {
     @Test
     public void setSize6x6() {
         int testValue = 6;
+        int testValue1 = 1;
         int expectedValue = 6;
+
         Sudoku sudoku = new Sudoku();
+        Sudoku sudoku1 = new Sudoku();
 
         sudoku.setSize(testValue);
+
+        assertEquals(sudoku.getSize(), expectedValue);;
+
+        sudoku1.setSize(testValue1);
+
         assertEquals(sudoku.getSize(), expectedValue);;
     }
 
     @Test
     public void setSize9x9() {
         int testValue = 9;
+        int testValue1 = 2;
         int expectedValue = 9;
+
         Sudoku sudoku = new Sudoku();
+        Sudoku sudoku1 = new Sudoku();
 
         sudoku.setSize(testValue);
+
+        assertEquals(sudoku.getSize(), expectedValue);;
+
+        sudoku1.setSize(testValue1);
+
         assertEquals(sudoku.getSize(), expectedValue);;
     }
 
@@ -61,7 +85,7 @@ public class SudokuTest {
         assertEquals(sudoku.getSize(), expectedValue);;
     }
 
-
+    //diff tests
     @Test
     public void setDifficulty() {
         //easy
