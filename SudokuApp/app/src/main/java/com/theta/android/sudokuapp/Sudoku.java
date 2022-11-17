@@ -86,7 +86,6 @@ public class Sudoku {
     public void loadSave(String layout) {
         cells = new ArrayList<>();
         String[] cellStrings = layout.split(",");
-        Log.d("SUDOKU", "string: " + layout + " len: " + cellStrings.length + " arr: " + cellStrings);
         for (int y = 0; y < size; y++) {
             cells.add(new ArrayList<>());
             for (int x = 0; x < size; x++) {

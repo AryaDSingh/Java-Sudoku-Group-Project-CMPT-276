@@ -2,7 +2,11 @@ package com.theta.android.sudokuapp;
 
 import static org.junit.Assert.*;
 
+import android.util.Log;
+
 import org.junit.Test;
+
+import java.util.List;
 
 public class HelpFuncTest {
 
@@ -37,4 +41,11 @@ public class HelpFuncTest {
         assertEquals(testValue, expectedValue);;
     }
 
+
+    @Test
+    public void split() {
+        String testValue1 = "a b c   ";
+        List<String> result1 = HelpFunc.split(testValue1, ' ');
+        assertEquals(6, result1.size());
+    }
 }

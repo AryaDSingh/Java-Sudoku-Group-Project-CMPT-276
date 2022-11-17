@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -40,14 +41,15 @@ public class cSudoku {
 
     private void startGame(Boolean isReplay) {
         isWinScreen = false;
+
         int sizeId = SettingsActivity.readSize(context);
         int difficulty = SettingsActivity.readDifficulty(context);
         sudoku.setSize(sizeId);
         sudoku.setDifficulty(difficulty);
 
         List<String> pairLines = cWordBank.getMainPairs(context);
-        if (pairLines.size() != sudoku.getSize()) {
-            pairLines = HelpFunc.readFile(context, R.raw.words);
+        if (pairLines.size() < sudoku.getSize()) {
+            pairLines = cWordBank.getDefaultPairs(context);
         }
         sudoku.initPairs(pairLines);
         loadGame();
@@ -111,6 +113,8 @@ public class cSudoku {
         AlertDialog.Builder alert = new AlertDialog.Builder(context);
         alert.setView(winScreen);
 
+        final RadioGroup pairPrompt = (RadioGroup) winScreen.findViewById(R.id.pairPrompt);
+
         final TextView scoreText = (TextView) winScreen.findViewById(R.id.gameScore);
         final TextView timeText = (TextView) winScreen.findViewById(R.id.gameTime);
         final TextView movesText = (TextView) winScreen.findViewById(R.id.gameMoves);
@@ -123,6 +127,10 @@ public class cSudoku {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();
+                if (pairPrompt.getCheckedRadioButtonId() == R.id.yesBut) {
+                    cWordBank.addPractice(context);
+                }
+
                 startGame(true);
             }
         });
