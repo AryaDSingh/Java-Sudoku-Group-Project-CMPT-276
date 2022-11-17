@@ -36,9 +36,9 @@ Clicking on the "Word bank" button in the setting menu will open the word bank. 
 
 After successfully completing a sudoku, the game will prompt the user to see if they found the current word pair to be difficult. Select yes will save that word pair into the "Practice" folder which can be accessesed from the word bank menu. Word pairs saved in the Practice fodler will be select at random when enabling the "practice pairs" option in the settings.
 
-<img src="img/stat_button.png">
-<img src="img/stat_screen.png">
-<img src="img/Hard_words.png">
+<img src="img/settings_button.png">
+<img src="img/settings_screen.png">
+<img src="img/practiceBank.png">
 
 > As an expert user of the app, I want to be able to add additional words into the word bank, so that i can adjust the difficulty of the game to suit my language comprehension level.
 
