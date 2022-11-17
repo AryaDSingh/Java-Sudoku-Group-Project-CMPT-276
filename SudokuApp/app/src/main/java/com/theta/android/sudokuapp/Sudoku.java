@@ -20,6 +20,14 @@ public class Sudoku {
 
     private final Boolean testing = true; // change this to true if you only want 1 empty cell upon creating a game
 
+    public int getGridW() {
+        return gridW;
+    }
+
+    public int getGridH() {
+        return gridH;
+    }
+
     public int getMoves() {
         return moves;
     }
