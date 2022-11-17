@@ -90,8 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 openHintButton();
             }
             public void openHintButton() {
-                Intent intent_hint = new Intent(MainActivity.this, HintActivity.class);
-                startActivity(intent_hint);
+                //do stuff for hint
             }
         });
 

@@ -29,14 +29,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".HintActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".StatisticActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity">

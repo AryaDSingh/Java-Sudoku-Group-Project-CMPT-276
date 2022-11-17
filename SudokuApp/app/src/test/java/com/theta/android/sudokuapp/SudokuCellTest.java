@@ -6,20 +6,31 @@ import org.junit.Test;
 
 public class SudokuCellTest {
 
-    @Test
-    public void getView() {
-        int testValue = 0;
-        int expectedValue = 0;
-
-        assertEquals(testValue, expectedValue);
-    }
 
     @Test
     public void setText() {
-        int testValue = 0;
-        int expectedValue = 0;
+        SudokuCell cell = new SudokuCell();
 
-        assertEquals(testValue, expectedValue);
+        String testValue = "1";
+        cell.setText(testValue);
+        String expectedValue = "1";
+
+        String result = cell.getText();
+
+        assertEquals(expectedValue,result);
+    }
+
+    @Test
+    public void getFirst2() {
+        SudokuCell cell = new SudokuCell();
+
+        String testValue = "123";
+        cell.setText(testValue);
+        String expectedValue = "12";
+
+        String result = cell.getFirst2();
+
+        assertEquals(expectedValue,result);
     }
 
     @Test

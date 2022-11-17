@@ -9,10 +9,6 @@ import java.util.List;
 import java.util.Random;
 
 
-//
-
-
-
 
 public class Sudoku {
     private int size; //side length size
