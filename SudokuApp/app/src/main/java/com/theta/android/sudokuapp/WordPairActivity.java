@@ -20,6 +20,7 @@ import org.w3c.dom.Text;
 public class WordPairActivity extends AppCompatActivity {
     private LinearLayout layout;
     private String dir;
+    private Boolean locked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +29,23 @@ public class WordPairActivity extends AppCompatActivity {
 
         this.layout = findViewById(R.id.root);
         this.dir = getIntent().getStringExtra("fileDir");
+        this.locked = !getIntent().getBooleanExtra("isDel", true);
         getPairs();
 
 
-        Button pairBut = findViewById(R.id.pairBut);
-        pairBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                makePair("", "");
-            }
-        });
 
+        Button pairBut = findViewById(R.id.pairBut);
+        if (locked) {
+            pairBut.setEnabled(false);
+        }
+        else {
+            pairBut.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    makePair("", "");
+                }
+            });
+        }
     }
 
     @Override
@@ -59,7 +66,6 @@ public class WordPairActivity extends AppCompatActivity {
             LinearLayout pair = (LinearLayout) layout.getChildAt(i);
             String first = HelpFunc.cleanString(((EditText)pair.getChildAt(0)).getText().toString());
             String second = HelpFunc.cleanString(((EditText)pair.getChildAt(1)).getText().toString());
-            Log.d("SUDOKU", "First & Second: " +first +" " + second);
 
             editor.putString(dir+"  ."+(i-start)+".first", first);
             editor.putString(dir+"  ."+(i-start)+".second", second);
@@ -73,10 +79,10 @@ public class WordPairActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("WordBank", Context.MODE_PRIVATE);
 
         int numPairs = prefs.getInt(dir+"  .numpairs", 0);
+        Log.d("SUDOKU", " num: " +  numPairs + " from: [" + dir+"  .numpairs" + "]");
         for (int i = 0; i < numPairs; i++) {
             String first= prefs.getString(dir+"  ."+i+".first", "");
             String second= prefs.getString(dir+"  ."+i+".second", "");
-            Log.d("SUDOKU", "First & Second: " +first +" " + second);
             makePair(first, second);
         }
     }
@@ -85,8 +91,14 @@ public class WordPairActivity extends AppCompatActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
         LinearLayout pairText = (LinearLayout) inflater.inflate(R.layout.pairs, layout, false);
         layout.addView(pairText);
-        ((EditText)pairText.getChildAt(0)).setText(first);
-        ((EditText)pairText.getChildAt(1)).setText(second);
+        EditText firstText = (EditText)pairText.getChildAt(0);
+        EditText secondText = (EditText)pairText.getChildAt(1);
+        firstText.setText(first);
+        secondText.setText(second);
+        if (locked) {
+            firstText.setEnabled(false);
+            secondText.setEnabled(false);
+        }
     }
 
 }

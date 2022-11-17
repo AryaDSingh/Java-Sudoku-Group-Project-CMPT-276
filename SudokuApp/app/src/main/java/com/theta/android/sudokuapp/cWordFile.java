@@ -32,13 +32,15 @@ public class cWordFile {
         return isFile;
     }
 
-    public cWordFile(Context context, String text, LinearLayout layout, cWordBank parent, Boolean isFile) {
+    public Boolean isDel() {return delBut!=null;}
+
+    public cWordFile(Context context, String text, LinearLayout layout, cWordBank parent, Boolean isFile, Boolean isDel) {
         this.context = context;
         this.parent = parent;
         this.isFile = isFile;
         this.text = text;
         this.layout = layout;
-        createBut(layout);
+        createBut(layout, isDel);
 
         createListener();
     }
@@ -47,12 +49,16 @@ public class cWordFile {
         return text;
     }
 
-    private void createBut(LinearLayout parent) {
+    private void createBut(LinearLayout parent, Boolean isDel) {
         LayoutInflater inflater = LayoutInflater.from(context);
         butParent = (LinearLayout)inflater.inflate(R.layout.wordbankbutton, parent, false);
         checkBut = (CheckBox) butParent.getChildAt(0);
         but = (Button) butParent.getChildAt(1);
         delBut = (Button) butParent.getChildAt(2);
+        if (!isDel) {
+            butParent.removeView(delBut);
+            delBut = null;
+        }
 
         if (!isFile) {
             butParent.removeViewAt(0);
@@ -72,10 +78,11 @@ public class cWordFile {
             }
         });
 
-        delBut.setOnClickListener(view -> {
-            layout.removeView(butParent);
-            parent.removeFile(this);
-        });
+        if (delBut != null) {
+            delBut.setOnClickListener(view -> {
+                parent.removeFile(this);
+            });
+        }
 
         if (isFile) {
             checkBut.setOnClickListener(view -> {

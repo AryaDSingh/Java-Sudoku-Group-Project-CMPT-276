@@ -47,6 +47,20 @@ public final class HelpFunc {
         return lines;
     }
 
+    public static List<String> split(String s, char splitAt) {
+        List<String> splitList= new ArrayList<>();
+        if (s.equals("")) {return splitList;}
+
+        int prevSplit = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == splitAt) {
+                splitList.add(s.substring(prevSplit, i));
+                prevSplit = i+1;
+            }
+        }
+        splitList.add(s.substring(prevSplit, s.length()));
+        return splitList;
+    }
 
 }
 
