@@ -8,6 +8,7 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -20,9 +21,11 @@ public class cSudoku {
 
     private final Sudoku sudoku;
     private final LinearLayout board;
+    private final int boardLength = 10;
     private List<List<cSudokuCell>> cells;
     private Context context;
     private Boolean isWinScreen = false;
+
 
     public void onStop() {
         if (!isWinScreen) {
@@ -80,17 +83,27 @@ public class cSudoku {
             LinearLayout row = createRow(size);
             for (int x = 0; x < size; x++) {
                 cSudokuCell cell = new cSudokuCell(context, this, row);
+                if ((x+1)%sudoku.getGridW() == 0 && x != size-1) {
+                    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) cell.getView().getLayoutParams();
+                    params.rightMargin = boardLength;
+                    cell.getView().setLayoutParams(params);
+                }
+                if ((y+1)%sudoku.getGridH() == 0 && y != size-1) {
+                    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) row.getLayoutParams();
+                    params.bottomMargin = boardLength;
+                    row.setLayoutParams(params);
+                }
+
                 cells.get(y).add(cell);
             }
         }
     }
 
     private LinearLayout createRow(final int size) {
-        LinearLayout row = new LinearLayout(context);
-        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 0);
-        p.weight = 1;
-        row.setLayoutParams(p);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        LinearLayout row = (LinearLayout) inflater.inflate(R.layout.boardrow, board, false);
         board.addView(row);
+
         cells.add(new ArrayList<>(size));
         return row;
     }
