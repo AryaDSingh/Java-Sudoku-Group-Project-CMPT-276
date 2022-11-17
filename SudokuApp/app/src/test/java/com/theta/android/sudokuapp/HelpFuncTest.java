@@ -25,7 +25,7 @@ public class HelpFuncTest {
         assertEquals(returnValue2, expectedValue2);;
 
         String testValue3 = "z    z ";
-        String expectedValue3 = "z    z";
+        String expectedValue3 = "zz";
         String returnValue3 = HelpFunc.cleanString(testValue3);
 
         assertEquals(returnValue3, expectedValue3);;

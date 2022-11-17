@@ -1,7 +1,7 @@
 package com.theta.android.sudokuapp;
 
 import android.util.Log;
-import android.util.Pair;
+import androidx.core.util.Pair;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -25,7 +25,7 @@ public class Sudoku {
     private int moves;
 
 
-    private final Boolean testing = true; // change this to true if you only want 1 empty cell upon creating a game
+    private final Boolean testing = false; // change this to true if you only want 1 empty cell upon creating a game
 
     public int getGridW() {
         return gridW;
@@ -287,7 +287,6 @@ public class Sudoku {
 
     public void initPairs(List<String> lines) {
         pairs = new ArrayList<>();
-
         for (String line: lines) {
             String[] items = line.split(",");
             if (items.length == 2) {
