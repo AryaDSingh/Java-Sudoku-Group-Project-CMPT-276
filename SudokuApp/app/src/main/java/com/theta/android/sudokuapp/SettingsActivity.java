@@ -21,6 +21,7 @@ import java.util.List;
 public class SettingsActivity extends AppCompatActivity {
 
     private Switch darkModeBut;
+    private Switch pairSwitch;
 
     private List<Integer> diffIds = new ArrayList<Integer>(Arrays.asList(R.id.easyBut, R.id.mediumBut, R.id.hardBut));
     private RadioGroup diffGroup;
@@ -41,10 +42,12 @@ public class SettingsActivity extends AppCompatActivity {
 
         diffGroup = (RadioGroup) findViewById(R.id.difficulty);
         darkModeBut = (Switch) findViewById(R.id.colormode);
+        pairSwitch = (Switch) findViewById(R.id.practicePairs);
         sizeGroup = (RadioGroup) findViewById(R.id.sudokuSize);
 
         diffGroup.check(diffIds.get(readDifficulty(this)));
         darkModeBut.setChecked(readColorMode(this));
+        pairSwitch.setChecked(readPracticeMode(this));
         sizeGroup.check(sizeIds.get(readSize(this)));
 
 
@@ -63,19 +66,8 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        //word_pair button
-        Button btn_pair = (Button) findViewById(R.id.button_pair);
-        //set the button to do stuff on click
-        btn_pair.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openPairButton();
-            }
-            public void openPairButton() {
-                Intent intent_pair = new Intent(SettingsActivity.this, WordPairActivity.class);
-                startActivity(intent_pair);
-            }
-        });
+
+
 
     }
 
@@ -88,9 +80,11 @@ public class SettingsActivity extends AppCompatActivity {
         int boardSize = sizeIds.indexOf(sizeGroup.getCheckedRadioButtonId());
 
         Boolean darkMode = darkModeBut.isChecked();
+        Boolean practiceMode = pairSwitch.isChecked();
 
         editor.putInt("difficulty", difficulty);
         editor.putBoolean("darkmode", darkMode);
+        editor.putBoolean("practicemode", practiceMode);
         editor.putInt("boardsize", boardSize);
         editor.commit();
 
@@ -110,6 +104,11 @@ public class SettingsActivity extends AppCompatActivity {
     public static int readSize(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE);
         return prefs.getInt("boardsize", 2);
+    }
+
+    public static Boolean readPracticeMode(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        return prefs.getBoolean("practicemode", false);
     }
 
 }

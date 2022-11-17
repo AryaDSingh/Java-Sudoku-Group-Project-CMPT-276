@@ -34,6 +34,10 @@ public class cSudokuCell {
         this.enabled = bool;
     }
 
+    public View getView() {
+        return but;
+    }
+
     public String getText() {
         return cell.getText();
     }

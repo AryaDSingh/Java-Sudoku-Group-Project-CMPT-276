@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 // one space (" ") means moving down a directory
@@ -54,7 +55,7 @@ public class cWordBank {
         editor.commit();
     }
 
-    private List<String> getFilesInDir(SharedPreferences prefs, String dir) {
+    private static List<String> getFilesInDir(SharedPreferences prefs, String dir) {
         return HelpFunc.split(prefs.getString(dir+"  .files", ""), ' ');
     }
 
@@ -162,11 +163,7 @@ public class cWordBank {
     }
 
     public void setMainPairs(cWordFile file) {
-        SharedPreferences prefs = context.getSharedPreferences("WordBank", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-
-        editor.putString(rootDir+"  .mainPairDir", (dir+" "+file.getText()).trim());
-        editor.commit();
+        setMainPairs((dir+" "+file.getText()).trim());
 
         for (cWordFile f: fileList) {
             f.setCheckBox(false);
@@ -174,7 +171,20 @@ public class cWordBank {
         file.setCheckBox(true);
     }
 
+    private void setMainPairs(String fileDir) {
+        SharedPreferences prefs = context.getSharedPreferences("WordBank", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putString(rootDir+"  .mainPairDir", fileDir);
+        editor.commit();
+
+    }
+
     public static List<String> getMainPairs(Context context) {
+        return getMainPairs(context, false);
+    }
+
+    private static List<String> getMainPairs(Context context, Boolean ignorePractice) {
         SharedPreferences prefs = context.getSharedPreferences("WordBank", Context.MODE_PRIVATE);
         List<String> pairLines = new ArrayList<>();
 
@@ -183,6 +193,14 @@ public class cWordBank {
             createDefaults(prefs);
             mainDir = prefs.getString(mainPairDir, rootDir);
         }
+        else if(SettingsActivity.readPracticeMode(context) == true && !ignorePractice) {
+            List<String> fileNames = getFilesInDir(prefs, practiceDir);
+            if (fileNames.size() != 0) {
+                mainDir = (practiceDir+" "+fileNames.get(new Random().nextInt(fileNames.size()))).trim();
+            }
+        }
+
+
         int numPairs = prefs.getInt(mainDir+"  .numpairs", 0);
         for (int i = 0; i < numPairs; i++) {
             String first= prefs.getString(mainDir+"  ."+i+".first", "");
@@ -198,7 +216,7 @@ public class cWordBank {
         editor.putString("  .mainPairDir", defaultDir);
         editor.commit();
 
-        return getMainPairs(context);
+        return getMainPairs(context, true);
     }
 
     public static void addPractice(Context context) {
