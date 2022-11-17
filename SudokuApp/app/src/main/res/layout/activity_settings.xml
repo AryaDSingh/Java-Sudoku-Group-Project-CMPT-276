@@ -74,9 +74,15 @@
     </RadioGroup>
 
     <Switch
+        android:id="@+id/practicePairs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Practice pairs"/>
+
+    <Switch
         android:id="@+id/colormode"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
+        android:layout_height="wrap_content"
         android:text="Dark Mode" />
 
     <Button
@@ -85,10 +91,5 @@
         android:layout_height="wrap_content"
         android:text="Word Bank" />
 
-    <Button
-        android:id="@+id/button_pair"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Practice Pairs" />
 
 </LinearLayout>

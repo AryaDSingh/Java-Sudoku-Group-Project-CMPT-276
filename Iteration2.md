@@ -15,37 +15,30 @@ For language learner users who prefer to use landscape mode, the app will detect
 
 > As a teacher, I want to specify a list of word pairs for my students to practice this week.
 
-In the "Settings" screen, the user will have the option to click on "Word Bank". After clicking on this option, the device will open a window showing 18 text fields. Nine on one side and the other nine on the other side. The user will be able to modify the text fields according to what words they would like to learn. On one side, nine words of their native language and on the other side nine words of the language they are learning. They will then be added to the app and can be retrieved for practice later. For example, a teacher could specify a list of word pairs, and it is up to the student(user) to modify the text fields and practice those new word pairs.  
+Clicking on the "Word bank" button in the setting menu will open the word bank. Here the student can create a folder called "Teacher" and copy down word pairs that the teacher assigns into that folder to use later when practing at home. Folders can be created by clicking the "add folder" button and naming it appropriatly. Word pair files can be created by clicking the "add file" button and naming it appropriatly. The word pairs can be added by opening the file and clicking on "add pair".
 
 <img src="img/settings_button.png">
 <img src="img/settings_screen.png">
-<img src="img/word_screen.png">
+<img src="img/teacherBank.png">
 
 # As students
 
 > As a student working with a textbook, I want to load pairs of words to practice from each chapter of the book.
 
-In the "Settings" screen the user will have the option to click on "Practice Pairs". After clicking on this option, the device will open a window showing 2 text fields. One on one side and the other on the other side. The user will be able to write a word of their native language and a word of language the user wants to practice. These will be added to the app and retrieved later while practicing.
+Clicking on the "Word bank" button in the setting menu will open the word bank. Here the student can create a folder called "Textbooks" and copy down word pairs from their textbook into that folder and create subfolders for each chapter ("Chapter 1", "Chapter 2", etc). Folders can be created by clicking the "add folder" button and naming it appropriatly. Word pair files can be created by clicking the "add file" button and naming it appropriatly. The word pairs can be added by opening the file and clicking on "add pair".
 
 
 <img src="img/settings_button.png">
-<img src="img/Practise_Pairs.png">
-<img src="img/Practise_Pairs2.png">
+<img src="img/settings_screen.png">
+<img src="img/textbookBank.png">
 
 > As a student, I want the Sudoku app to keep track of the vocabulary words that I am having difficulty recognizing so that they will be used more often in my practice puzzles.
 
-The app will feature a button called "Statistics" that will be displayed on the corner of the screen. When the user clicks the button it will display a popup window. This window will display various statistics of the user which include:
-- the total number of wins the player has achieved
-- the total number of wins on each difficulty
-- the words the user found difficulty recognizing or made mistakes
-the app will keep track of the words that the user often does not recognize and display these words more often in their practice games
+After successfully completing a sudoku, the game will prompt the user to see if they found the current word pair to be difficult. Select yes will save that word pair into the "Practice" folder which can be accessesed from the word bank menu. Word pairs saved in the Practice fodler will be select at random when enabling the "practice pairs" option in the settings.
 
-
-On the sketch below, the statistics button can be seen circled in red. The popup menu is also shown below
-
-<img src="img/stat_button.png">
-<img src="img/stat_screen.png">
-<img src="img/Hard_words.png">
+<img src="img/settings_button.png">
+<img src="img/settings_screen.png">
+<img src="img/practiceBank.png">
 
 > As an expert user of the app, I want to be able to add additional words into the word bank, so that i can adjust the difficulty of the game to suit my language comprehension level.
 
