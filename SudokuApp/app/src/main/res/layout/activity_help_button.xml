@@ -75,16 +75,14 @@ For example, in the upper left square, we know we need to add a 5 and a 6 to be 
           android:layout_height="wrap_content"
           android:layout_gravity="fill"
           android:baselineAligned="false"
-          android:text="Initial Board"
+          android:text="Initial Board \n\nWhat should we put in the empty box?"
           android:textSize="45sp" />
 
 
       <ImageView
-
-          android:id="@+id/help_imageView1"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content" />
-<!--          app:srcCompat="@drawable/sudoku_ex_board_iteration_1" />-->
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          app:srcCompat="@drawable/iteration2initialscreen" />
 
       <TextView
           android:id="@+id/textView4"
@@ -93,15 +91,15 @@ For example, in the upper left square, we know we need to add a 5 and a 6 to be 
           android:layout_gravity="fill"
           android:baselineAligned="false"
 
-          android:text="Victory Board"
+          android:text="How about a 9!\n\nVictory Board"
 
           android:textSize="45sp" />
 
+
       <ImageView
-          android:id="@+id/help_imageView2"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content" />
-<!--          app:srcCompat="@drawable/sudoku_ex_board_iteration_1_completed" />-->
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          app:srcCompat="@drawable/iteration2winscreen" />
 
       <TextView
           android:id="@+id/textView5"

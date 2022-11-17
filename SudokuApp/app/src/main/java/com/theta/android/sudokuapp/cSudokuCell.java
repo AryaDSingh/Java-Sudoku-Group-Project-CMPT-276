@@ -51,7 +51,6 @@ public class cSudokuCell {
         }
     }
 
-
     private void createListener() {
         but.setOnClickListener(new View.OnClickListener() {
             @Override

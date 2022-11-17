@@ -24,3 +24,4 @@ public class ExampleInstrumentedTest {
         assertEquals("com.theta.android.sudokuapp", appContext.getPackageName());
     }
 }
+

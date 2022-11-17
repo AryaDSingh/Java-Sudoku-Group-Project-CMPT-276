@@ -8,6 +8,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+
+//
+
+
+
+
 public class Sudoku {
     private int size; //side length size
     private int gridH;// this should be smaller than (or equal) to gridW
@@ -17,6 +23,7 @@ public class Sudoku {
     private List<List<String>> cells;
     private long startTime;
     private int moves;
+
 
     private final Boolean testing = true; // change this to true if you only want 1 empty cell upon creating a game
 
@@ -64,6 +71,8 @@ public class Sudoku {
     public void setDifficulty(final int difficulty) {
         this.difficulty = difficulty;
     }
+
+    public int getDifficulty() { return difficulty; }
 
     public int getSize() {
         return size;
