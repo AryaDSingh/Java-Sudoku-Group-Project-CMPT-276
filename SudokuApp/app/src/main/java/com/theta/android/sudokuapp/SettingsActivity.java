@@ -22,6 +22,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private Switch darkModeBut;
     private Switch pairSwitch;
+    private Switch translateSwitch;
 
     private List<Integer> diffIds = new ArrayList<Integer>(Arrays.asList(R.id.easyBut, R.id.mediumBut, R.id.hardBut));
     private RadioGroup diffGroup;
@@ -44,12 +45,13 @@ public class SettingsActivity extends AppCompatActivity {
         darkModeBut = (Switch) findViewById(R.id.colormode);
         pairSwitch = (Switch) findViewById(R.id.practicePairs);
         sizeGroup = (RadioGroup) findViewById(R.id.sudokuSize);
+        translateSwitch = (Switch) findViewById(R.id.translate);
 
         diffGroup.check(diffIds.get(readDifficulty(this)));
         darkModeBut.setChecked(readColorMode(this));
         pairSwitch.setChecked(readPracticeMode(this));
         sizeGroup.check(sizeIds.get(readSize(this)));
-
+        translateSwitch.setChecked(readTranslateMode(this));
 
         //word_bank button
         Button btn_word = (Button) findViewById(R.id.button_word);
@@ -81,11 +83,13 @@ public class SettingsActivity extends AppCompatActivity {
 
         Boolean darkMode = darkModeBut.isChecked();
         Boolean practiceMode = pairSwitch.isChecked();
+        Boolean translateMode = translateSwitch.isChecked();
 
         editor.putInt("difficulty", difficulty);
         editor.putBoolean("darkmode", darkMode);
         editor.putBoolean("practicemode", practiceMode);
         editor.putInt("boardsize", boardSize);
+        editor.putBoolean("translatemode", translateMode);
         editor.commit();
 
         cSudoku.deleteSave(this);
@@ -109,6 +113,11 @@ public class SettingsActivity extends AppCompatActivity {
     public static Boolean readPracticeMode(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE);
         return prefs.getBoolean("practicemode", false);
+    }
+
+    public static Boolean readTranslateMode(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        return prefs.getBoolean("translatemode", false);
     }
 
 }

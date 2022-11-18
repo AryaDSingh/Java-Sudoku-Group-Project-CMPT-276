@@ -2,6 +2,8 @@ package com.theta.android.sudokuapp;
 
 import android.util.Log;
 import androidx.core.util.Pair;
+
+import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -20,8 +22,7 @@ public class Sudoku {
     private long startTime;
     private int moves;
 
-
-    private final Boolean testing = false; // change this to true if you only want 1 empty cell upon creating a game
+    private final Boolean testing = true; // change this to true if you only want 1 empty cell upon creating a game
 
     public int getGridW() {
         return gridW;
@@ -250,7 +251,7 @@ public class Sudoku {
         return true;
     }
 
-    private Pair<String, String> findWordPair(String text) {
+    public Pair<String, String> findWordPair(String text) {
         for (Pair<String, String> pair: pairs) {
             if (text.equals(pair.first) || text.equals(pair.second) ) {
                 return pair;

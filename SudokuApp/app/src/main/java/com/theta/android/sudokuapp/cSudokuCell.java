@@ -15,10 +15,12 @@ public class cSudokuCell {
     private final Context context;
     final private SudokuCell cell;
     final private cSudoku parent;
+    private Boolean translate;
     private Boolean enabled = true;
 
 
-    public cSudokuCell(Context context, cSudoku parent, LinearLayout butParent) {
+    public cSudokuCell(Context context, cSudoku parent, LinearLayout butParent, Boolean translate) {
+        this.translate = translate;
         this.parent = parent;
         this.context = context;
         this.cell = new SudokuCell();
@@ -47,6 +49,9 @@ public class cSudokuCell {
     }
 
     private void setText(String text, Boolean callChange) {
+        if (translate) {
+            text = parent.translate(text);
+        }
         cell.setText(text);
         but.setText(cell.getFirst2());
 

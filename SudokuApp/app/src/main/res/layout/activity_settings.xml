@@ -85,6 +85,12 @@
         android:layout_height="wrap_content"
         android:text="Dark Mode" />
 
+    <Switch
+        android:id="@+id/translate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Translate pairs" />
+
     <Button
         android:id="@+id/button_word"
         android:layout_width="match_parent"

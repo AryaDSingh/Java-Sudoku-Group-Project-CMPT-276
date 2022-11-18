@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import androidx.core.util.Pair;
+
+import android.media.audiofx.Equalizer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,12 @@ public class cSudoku {
     private List<List<cSudokuCell>> cells;
     private Context context;
     private Boolean isWinScreen = false;
+
+    public String translate(String text) {
+        if (text == null) return null;
+        Pair<String, String> pair = sudoku.findWordPair(text);
+        return pair == null? text: pair.first;
+    }
 
 
     public void onStop() {
@@ -78,11 +86,12 @@ public class cSudoku {
     private void initBoard() {
         final int size = sudoku.getSize();
         cells = new ArrayList<List<cSudokuCell>>(size);
+        Boolean translate = SettingsActivity.readTranslateMode(context);
 
         for (int y = 0; y < size; y++) {
             LinearLayout row = createRow(size);
             for (int x = 0; x < size; x++) {
-                cSudokuCell cell = new cSudokuCell(context, this, row);
+                cSudokuCell cell = new cSudokuCell(context, this, row, translate);
                 if ((x+1)%sudoku.getGridW() == 0 && x != size-1) {
                     LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) cell.getView().getLayoutParams();
                     params.rightMargin = boardLength;
