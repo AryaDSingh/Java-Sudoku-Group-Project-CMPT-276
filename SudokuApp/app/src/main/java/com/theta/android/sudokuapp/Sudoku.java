@@ -260,6 +260,22 @@ public class Sudoku {
         return null;
     }
 
+    /**
+     * finds the index of the string in pairs list
+     * @param text the string to search from in pairs list
+     * @return index of specified string in pairs list
+     */
+    public int getPairIndex(String text) {
+        int size = pairs.size();
+        for (int i = 0; i < size; i++) {
+            Pair<String, String> pair = pairs.get(i);
+            if (text.equals(pair.first) || text.equals(pair.second)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public void generateBoard() {
         List<List<Integer>> boardLayout = createBoard();
         cells = new ArrayList<>();

@@ -87,11 +87,12 @@ public class cSudoku {
         final int size = sudoku.getSize();
         cells = new ArrayList<List<cSudokuCell>>(size);
         Boolean translate = SettingsActivity.readTranslateMode(context);
+        Boolean voiceMode = SettingsActivity.readVoiceMode(context);
 
         for (int y = 0; y < size; y++) {
             LinearLayout row = createRow(size);
             for (int x = 0; x < size; x++) {
-                cSudokuCell cell = new cSudokuCell(context, this, row, translate);
+                cSudokuCell cell = new cSudokuCell(context, this, row, translate, voiceMode);
                 if ((x+1)%sudoku.getGridW() == 0 && x != size-1) {
                     LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) cell.getView().getLayoutParams();
                     params.rightMargin = boardLength;
@@ -168,6 +169,15 @@ public class cSudoku {
             }
         }
         return null;
+    }
+
+    /**
+     * finds the index of the string in pairs list
+     * @param text the string to search from in pairs list
+     * @return index of specified string in pairs list
+     */
+    public int getPairIndex(String text) {
+        return sudoku.getPairIndex(text);
     }
 
     public void saveGame() {

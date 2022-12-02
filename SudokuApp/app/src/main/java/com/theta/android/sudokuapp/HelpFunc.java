@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -16,6 +17,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.Callable;
 import java.util.function.Function;
 
@@ -60,6 +62,26 @@ public final class HelpFunc {
         }
         splitList.add(s.substring(prevSplit, s.length()));
         return splitList;
+    }
+
+    /**
+     * Converts the name of a language(String) to the correct Locale value
+     * @param lang The language string to be converted
+     * @return The corresponding Locale language
+     */
+    public static Locale langToLocale(String lang) {
+        switch (lang) {
+            case "English":
+                return Locale.ENGLISH;
+            case "Japanese":
+                return Locale.JAPANESE;
+            case "Mandrin":
+                return Locale.SIMPLIFIED_CHINESE;
+            case "Cantonese":
+                return Locale.TRADITIONAL_CHINESE;
+            default:
+                return null;
+        }
     }
 
 }
