@@ -25,6 +25,7 @@ public class WordPairActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout();
         setContentView(R.layout.activity_word_pair);
 
         this.layout = findViewById(R.id.root);
@@ -98,6 +99,14 @@ public class WordPairActivity extends AppCompatActivity {
         if (locked) {
             firstText.setEnabled(false);
             secondText.setEnabled(false);
+        }
+    }
+    //dark mode
+    private void setLayout() {
+        if (SettingsActivity.readColorMode(this)) {
+            LinearLayout header = findViewById(R.id.root);
+            int color = getResources().getColor(R.color.dark);
+            header.setBackgroundColor(color);
         }
     }
 

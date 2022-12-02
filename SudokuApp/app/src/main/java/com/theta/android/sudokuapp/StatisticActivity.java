@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.File;  // Import the File class
@@ -22,7 +23,7 @@ public class StatisticActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistic);
-
+        setLayout();
         display();
     }
 
@@ -103,4 +104,13 @@ public class StatisticActivity extends AppCompatActivity {
         return stats;
     }
 
+    //dark mode
+    private void setLayout() {
+        if (SettingsActivity.readColorMode(this)) {
+            LinearLayout header = findViewById(R.id.mainHeaderStatistics);
+            int color = getResources().getColor(R.color.dark);
+            header.setBackgroundColor(color);
+
+        }
+    }
 }

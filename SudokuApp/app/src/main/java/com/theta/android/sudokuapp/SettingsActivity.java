@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
@@ -34,13 +35,15 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         saveSettings();
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-
+        setLayout();
         diffGroup = (RadioGroup) findViewById(R.id.difficulty);
         darkModeBut = (Switch) findViewById(R.id.colormode);
         pairSwitch = (Switch) findViewById(R.id.practicePairs);
@@ -118,6 +121,15 @@ public class SettingsActivity extends AppCompatActivity {
     public static Boolean readTranslateMode(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE);
         return prefs.getBoolean("translatemode", false);
+    }
+
+    //dark mode
+    private void setLayout() {
+        if (SettingsActivity.readColorMode(this)) {
+            LinearLayout header = findViewById(R.id.root);
+            int color = getResources().getColor(R.color.dark);
+            header.setBackgroundColor(color);
+        }
     }
 
 }

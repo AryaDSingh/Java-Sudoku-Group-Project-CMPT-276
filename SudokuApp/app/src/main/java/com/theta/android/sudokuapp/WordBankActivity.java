@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -19,6 +20,7 @@ public class WordBankActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_bank);
+        setLayout();
 
         this.fileSystem = new cWordBank(this, findViewById(R.id.wordBankRoot));
 
@@ -55,5 +57,14 @@ public class WordBankActivity extends AppCompatActivity {
         alert.create();
         alert.show();
     }
+    //dark mode
+    private void setLayout() {
+        if (SettingsActivity.readColorMode(this)) {
+            LinearLayout header = findViewById(R.id.wordBankRoot);
+            int color = getResources().getColor(R.color.dark);
+            header.setBackgroundColor(color);
+        }
+    }
+
 
 }
