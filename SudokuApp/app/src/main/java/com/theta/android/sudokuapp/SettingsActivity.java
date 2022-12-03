@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.content.Intent;
-import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -46,6 +46,7 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         saveSettings();
+
     }
 
     /**
@@ -56,9 +57,10 @@ public class SettingsActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-
+        setLayout();
         diffGroup = (RadioGroup) findViewById(R.id.difficulty);
         darkModeBut = (Switch) findViewById(R.id.colormode);
         pairSwitch = (Switch) findViewById(R.id.practicePairs);
@@ -149,14 +151,13 @@ public class SettingsActivity extends AppCompatActivity {
         return prefs.getBoolean("translatemode", false);
     }
 
-    public static Boolean readVoiceMode(Context context) {
-        SharedPreferences prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE);
-        return prefs.getBoolean("voicemode", false);
-    }
-
-    public static String readLanguage(Context context) {
-        SharedPreferences prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE);
-        return prefs.getString("language", "English");
+    //dark mode
+    private void setLayout() {
+        if (SettingsActivity.readColorMode(this)) {
+            LinearLayout header = findViewById(R.id.root);
+            int color = getResources().getColor(R.color.dark);
+            header.setBackgroundColor(color);
+        }
     }
 
 }
