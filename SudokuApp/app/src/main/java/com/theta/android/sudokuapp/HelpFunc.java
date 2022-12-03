@@ -21,34 +21,30 @@ import java.util.Locale;
 import java.util.concurrent.Callable;
 import java.util.function.Function;
 
+/**
+ * various helper functions used in various classes
+ */
 public final class HelpFunc {
     private HelpFunc() {
     }
 
+    /**
+     * cleans a string of whitespaces and invisible characters
+     * @param s string to be cleaned
+     * @return cleaned string without whitespaces
+     */
     public static String cleanString(String s) {
         return s.replaceAll("[\u200B-\u200D\uFEFF]", "").trim().replace(" ","");
     }
 
-    public static List<String> readFile(Context context, int file) {
-        InputStream is = context.getResources().openRawResource(file);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-        List<String> lines = new ArrayList<>();
-
-        String line = "";
-        try {
-            while ( (line = reader.readLine()) != null ) {
-                lines.add(line);
-
-            }
-        }
-        catch (IOException e) {
-            Log.e("readFile", "could not init pairs");
-            e.printStackTrace();
-        }
-
-        return lines;
-    }
-
+    /**
+     * modified version of the string.split()
+     * Splits even if there are no characters adjacent to splitting character
+     *
+     * @param s string to split
+     * @param splitAt characters to split at
+     * @return string list splitted at the specified character
+     */
     public static List<String> split(String s, char splitAt) {
         List<String> splitList= new ArrayList<>();
         if (s.equals("")) {return splitList;}

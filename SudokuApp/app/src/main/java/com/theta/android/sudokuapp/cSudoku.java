@@ -18,23 +18,32 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * sudoku Controller class
+ */
 public class cSudoku {
-    private final String TAG = "sudoku";
-
     private final Sudoku sudoku;
     private final LinearLayout board;
-    private final int boardLength = 10;
+    private final int boardLength = 10; //margin length between grids
     private List<List<cSudokuCell>> cells;
     private Context context;
     private Boolean isWinScreen = false;
 
+    /**
+     * translates word pair from secondary to primary language
+     * @param text word to be translated
+     * @return the translating text
+     */
     public String translate(String text) {
         if (text == null) return null;
         Pair<String, String> pair = sudoku.findWordPair(text);
         return pair == null? text: pair.first;
     }
 
-
+    /**
+     * event that is called if current context is stopped
+     * saves the current game before close
+     */
     public void onStop() {
         if (!isWinScreen) {
             saveGame();
@@ -42,6 +51,11 @@ public class cSudoku {
 
     }
 
+    /**
+     * starts game for the first time
+     * @param context current context
+     * @param board layout to initialize cells in
+     */
     public cSudoku(Context context, ViewGroup board) {
         this.context = context;
         this.sudoku = new Sudoku();
@@ -50,6 +64,10 @@ public class cSudoku {
         startGame(false);
     }
 
+    /**
+     * initializes various values before starting the game
+     * @param isReplay if player has hit the play again button
+     */
     private void startGame(Boolean isReplay) {
         isWinScreen = false;
 
@@ -71,6 +89,9 @@ public class cSudoku {
         sudoku.startGame();
     }
 
+    /**
+     * reinitializes the board when pressing play again
+     */
     private void generateBoard() {
         final int size = sudoku.getSize();
         for (int y = 0; y < size; y++) {
@@ -83,6 +104,10 @@ public class cSudoku {
         }
     }
 
+    /**
+     * initializes the board and generates all the cells and displays them on the screen
+     * only used once
+     */
     private void initBoard() {
         final int size = sudoku.getSize();
         cells = new ArrayList<List<cSudokuCell>>(size);
@@ -109,6 +134,11 @@ public class cSudoku {
         }
     }
 
+    /**
+     * initializes a row to the screen
+     * @param size the length of the row
+     * @return LineaLayout that represents the row
+     */
     private LinearLayout createRow(final int size) {
         LayoutInflater inflater = LayoutInflater.from(context);
         LinearLayout row = (LinearLayout) inflater.inflate(R.layout.boardrow, board, false);
@@ -118,6 +148,10 @@ public class cSudoku {
         return row;
     }
 
+    /**
+     * event that is called when the text of a cell is changed
+     * @param cell that fired the event
+     */
     public void onCellChange(cSudokuCell cell) {
         if (sudoku.onCellChange(findIndex(cell), cell.getText())) {
             isWinScreen = true;
@@ -130,6 +164,12 @@ public class cSudoku {
         }
     }
 
+    /**
+     * creates a win popup screen
+     * @param score player's final score
+     * @param time player's time taken to beat current game
+     * @param moves player's number of moves
+     */
     private void createWinPopup(int score, int time, int moves) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View winScreen = inflater.inflate(R.layout.win_screen, null);
@@ -161,6 +201,11 @@ public class cSudoku {
         alert.show();
     }
 
+    /**
+     * finds coordinates of a cell
+     * @param cell to search for
+     * @return a pair containing the indexes of the cell in cells list
+     */
     private Pair<Integer, Integer> findIndex(cSudokuCell cell) {
         for (int y = 0; y < cells.size(); y++) {
             int x = cells.get(y).indexOf(cell);
@@ -180,6 +225,9 @@ public class cSudoku {
         return sudoku.getPairIndex(text);
     }
 
+    /**
+     * saves current game to SharedPreferences
+     */
     public void saveGame() {
         SharedPreferences prefs = context.getSharedPreferences("save", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -191,6 +239,10 @@ public class cSudoku {
         editor.commit();
     }
 
+    /**
+     * deletes current game save
+     * @param context to access SharedPreferances with
+     */
     public static void deleteSave(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("save", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -199,6 +251,9 @@ public class cSudoku {
         editor.commit();
     }
 
+    /**
+     * generates board by making calls to model class and checks if there is a saved game
+     */
     private void loadGame() {
         SharedPreferences prefs = context.getSharedPreferences("save", Context.MODE_PRIVATE);
 

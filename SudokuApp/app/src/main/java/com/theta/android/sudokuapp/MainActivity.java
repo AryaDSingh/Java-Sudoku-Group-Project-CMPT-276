@@ -100,6 +100,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * sets the background color of the main layout
+     *
+     * Is used with dark mode
+     */
     private void setLayout() {
         if (SettingsActivity.readColorMode(this)) {
             LinearLayout header = findViewById(R.id.mainHeader);

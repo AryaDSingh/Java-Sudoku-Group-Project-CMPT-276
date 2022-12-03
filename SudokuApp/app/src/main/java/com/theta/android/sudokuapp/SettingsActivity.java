@@ -35,12 +35,21 @@ public class SettingsActivity extends AppCompatActivity {
     private List<Integer> sizeIds = new ArrayList<Integer>(Arrays.asList(R.id.size4, R.id.size6, R.id.size9, R.id.size12));
     private RadioGroup sizeGroup;
 
+    /**
+     * saves settings on pause event
+     */
     @Override
     protected void onPause() {
         super.onPause();
         saveSettings();
     }
 
+    /**
+     * initializes the correct values to each setting option
+     * and creates an click listener for wordbank button
+     *
+     * @param savedInstanceState the SavedInstanceState bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,9 +73,6 @@ public class SettingsActivity extends AppCompatActivity {
         translateSwitch.setChecked(readTranslateMode(this));
         voiceSwitch.setChecked(readVoiceMode(this));
 
-
-
-
         //word_bank button
         Button btn_word = (Button) findViewById(R.id.button_word);
         //set the button to do stuff on click
@@ -83,6 +89,9 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * saves the current settings
+     */
     private void saveSettings() {
         SharedPreferences prefs = this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -108,6 +117,10 @@ public class SettingsActivity extends AppCompatActivity {
 
         cSudoku.deleteSave(this);
     }
+
+    ////////////////////////////////////
+    //Getters for various settings below
+    ////////////////////////////////////
 
     public static int readDifficulty(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE);

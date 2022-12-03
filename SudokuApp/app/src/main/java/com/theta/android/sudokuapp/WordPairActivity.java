@@ -32,8 +32,6 @@ public class WordPairActivity extends AppCompatActivity {
         this.locked = !getIntent().getBooleanExtra("isDel", true);
         getPairs();
 
-
-
         Button pairBut = findViewById(R.id.pairBut);
         if (locked) {
             pairBut.setEnabled(false);
