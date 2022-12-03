@@ -69,21 +69,42 @@ public class HelpFuncTest {
     }
 
     /**
+     * testing null input
+     */
+    @Test
+    public void langToLocale2() {
+        String testValue = null;
+        Locale expectedValue = null;
+
+        Locale returnValue = HelpFunc.langToLocale(testValue);
+        assertEquals(expectedValue, returnValue);
+
+    }
+
+    /**
      * testing various valid language inputs
      * should return corresponding correct language
      */
     @Test
-    public void langToLocale2() {
+    public void langToLocale3() {
         String[] testValues =
-                        {"English",
-                        "Japanese",
-                        "Mandrin",
-                        "Cantonese"};
+                {"English",
+                "Japanese",
+                "Mandrin",
+                "Cantonese",
+                "French",
+                "German",
+                "Italian",
+                "Korean"};
         Locale[] expectedValues =
                 {Locale.ENGLISH,
                 Locale.JAPANESE,
                 Locale.SIMPLIFIED_CHINESE,
-                Locale.TRADITIONAL_CHINESE};
+                Locale.TRADITIONAL_CHINESE,
+                Locale.FRENCH,
+                Locale.GERMAN,
+                Locale.ITALIAN,
+                Locale.KOREAN};
 
         int size = testValues.length;
         for (int i = 0; i < size; i++) {
