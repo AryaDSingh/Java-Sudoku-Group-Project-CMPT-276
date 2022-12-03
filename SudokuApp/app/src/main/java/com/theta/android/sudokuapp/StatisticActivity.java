@@ -8,17 +8,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.io.File;  // Import the File class
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;  // Import the IOException class to handle errors
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
+/**
+ * class for statistics activity
+ *
+ * statistics can be added and changed from here
+ */
 public class StatisticActivity extends AppCompatActivity {
 
+    /**
+     * displays the statistics
+     * @param savedInstanceState The SavedInstanceState bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,9 @@ public class StatisticActivity extends AppCompatActivity {
         display();
     }
 
+    /**
+     * displays the statistics to the various textviews
+     */
     private void display() {
         List<Integer> stats = readStats(this);
 
@@ -58,6 +64,14 @@ public class StatisticActivity extends AppCompatActivity {
         tMovesView.setText(tMovesView.getText() + Integer.toString(stats.get(4)));
     }
 
+    /**
+     * saves new statistics after a win
+     * @param context current context
+     * @param wins number of wins since last save (usually 1)
+     * @param score user's score in current game
+     * @param time user's win time in current game
+     * @param moves number of moves played in current game
+     */
     public static void addStats(Context context, int wins, int score, int time, int moves) {
         List<Integer> stats = readStats(context);
         int prevWins = stats.get(0);
@@ -81,6 +95,11 @@ public class StatisticActivity extends AppCompatActivity {
         writeStats(context, stats);
     }
 
+    /**
+     * saves the statistics to shared preferences
+     * @param context current context
+     * @param stats list of statistics to save
+     */
     private static void writeStats(Context context, List<Integer> stats) {
         SharedPreferences prefs = context.getSharedPreferences("Stats", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -93,6 +112,11 @@ public class StatisticActivity extends AppCompatActivity {
         editor.commit();
     }
 
+    /**
+     * retrieves statistics from sharedPreferences
+     * @param context current context
+     * @return list of statistic values
+     */
     private static List<Integer> readStats(Context context) {
         List<Integer> stats = new ArrayList<>();
         SharedPreferences prefs = context.getSharedPreferences("Stats", Context.MODE_PRIVATE);

@@ -12,10 +12,16 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
+/**
+ * the wordbank activity class
+ */
 public class WordBankActivity extends AppCompatActivity {
     private cWordBank fileSystem;
 
+    /**
+     * creates word bank buttons and initializes wordbank controller
+     * @param savedInstanceState the SavedInstanceState bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,12 +41,20 @@ public class WordBankActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * saves files on stop event
+     */
     @Override
     protected void onStop() {
         super.onStop();
         this.fileSystem.saveFiles();
     }
 
+    /**
+     * creates a prompt to name a folder/file
+     * @param fileSystem the current wordbank controller
+     * @param isFile True if is a file, false if is a folder
+     */
     private void createPrompt(cWordBank fileSystem, Boolean isFile) {
         LayoutInflater inflater = LayoutInflater.from(this);
         View prompt = inflater.inflate(R.layout.prompt, null);

@@ -8,6 +8,11 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+/**
+ * activity class for the help menu
+ *
+ * displays the instructions from layout
+ */
 public class HelpActivity extends AppCompatActivity {
 
     @Override
