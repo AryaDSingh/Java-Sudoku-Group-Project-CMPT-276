@@ -10,9 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.15"
-        android:orientation="horizontal"
-        android:background="@color/teal_700"
-        android:gravity="center">
+        android:background="#00616161"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/statistics"
@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.15"
-        android:background="@color/teal_700"
+        android:background="#00616161"
         android:gravity="center"
         android:orientation="vertical">
 

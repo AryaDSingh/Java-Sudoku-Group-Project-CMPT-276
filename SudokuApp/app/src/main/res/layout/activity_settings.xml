@@ -91,11 +91,42 @@
         android:layout_height="wrap_content"
         android:text="Translate pairs" />
 
+    <Switch
+        android:id="@+id/voiceMode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Comprehension mode" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Comprehension Language"
+            android:gravity="center_vertical"
+            />
+
+        <Spinner
+            android:id="@+id/language"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"/>
+
+    </LinearLayout>
+
+
     <Button
         android:id="@+id/button_word"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Word Bank" />
+
 
 
 </LinearLayout>

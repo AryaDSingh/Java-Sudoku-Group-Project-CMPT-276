@@ -17,22 +17,30 @@ import com.google.android.material.textview.MaterialTextView;
 
 import org.w3c.dom.Text;
 
+/**
+ * activity for creating pairs in the word file
+ */
 public class WordPairActivity extends AppCompatActivity {
     private LinearLayout layout;
     private String dir;
     private Boolean locked;
 
+    /**
+     * sets the perameters of the wordpair file
+     * and creates a click event for new pair button
+     *
+     * @param savedInstanceState the SavedInstanceState bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLayout();
         setContentView(R.layout.activity_word_pair);
 
         this.layout = findViewById(R.id.root);
         this.dir = getIntent().getStringExtra("fileDir");
         this.locked = !getIntent().getBooleanExtra("isDel", true);
         getPairs();
-
-
 
         Button pairBut = findViewById(R.id.pairBut);
         if (locked) {
@@ -48,13 +56,19 @@ public class WordPairActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * saves pairs on stop
+     */
     @Override
     protected void onStop() {
         super.onStop();
         savePairs();
     }
 
-
+    /**
+     * saves the current word pairs in the word file
+     * using sharedpreferences
+     */
     private void savePairs() {
         SharedPreferences prefs = getSharedPreferences("WordBank", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -74,6 +88,9 @@ public class WordPairActivity extends AppCompatActivity {
         editor.commit();
     }
 
+    /**
+     * gets the word pairs of the file from sharedpreferences
+     */
     private void getPairs() {
         TextView title = findViewById(R.id.title);
         SharedPreferences prefs = getSharedPreferences("WordBank", Context.MODE_PRIVATE);
@@ -87,6 +104,11 @@ public class WordPairActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * creates a new word pair
+     * @param first the word from the primary language
+     * @param second the translated word from the secondary language
+     */
     private void makePair(String first, String second) {
         LayoutInflater inflater = LayoutInflater.from(this);
         LinearLayout pairText = (LinearLayout) inflater.inflate(R.layout.pairs, layout, false);
@@ -98,6 +120,14 @@ public class WordPairActivity extends AppCompatActivity {
         if (locked) {
             firstText.setEnabled(false);
             secondText.setEnabled(false);
+        }
+    }
+    //dark mode
+    private void setLayout() {
+        if (SettingsActivity.readColorMode(this)) {
+            LinearLayout header = findViewById(R.id.root);
+            int color = getResources().getColor(R.color.dark);
+            header.setBackgroundColor(color);
         }
     }
 
