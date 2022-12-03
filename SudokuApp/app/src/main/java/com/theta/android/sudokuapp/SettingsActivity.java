@@ -69,7 +69,8 @@ public class SettingsActivity extends AppCompatActivity {
         voiceSwitch = (Switch) findViewById(R.id.voiceMode);
         languageSelect = (Spinner) findViewById(R.id.language);
 
-        List<String> languages = Arrays.asList("English", "Japanese", "Mandrin", "Cantonese");
+        List<String> languages = Arrays.asList("English", "Japanese", "Mandrin", "Cantonese", "French", "German", "Italian", "Korean");
+
         languageSelect.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, languages));
         languageSelect.setSelection(languages.indexOf(readLanguage(this)));
         diffGroup.check(diffIds.get(readDifficulty(this)));

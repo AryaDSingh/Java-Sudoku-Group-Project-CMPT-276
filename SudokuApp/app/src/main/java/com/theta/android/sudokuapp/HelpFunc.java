@@ -64,6 +64,7 @@ public final class HelpFunc {
      * @return The corresponding Locale language
      */
     public static Locale langToLocale(String lang) {
+        if (lang == null) {return null;}
         switch (lang) {
             case "English":
                 return Locale.ENGLISH;
@@ -73,6 +74,14 @@ public final class HelpFunc {
                 return Locale.SIMPLIFIED_CHINESE;
             case "Cantonese":
                 return Locale.TRADITIONAL_CHINESE;
+            case "French":
+                return Locale.FRENCH;
+            case "German":
+                return Locale.GERMAN;
+            case "Italian":
+                return Locale.ITALIAN;
+            case "Korean":
+                return Locale.KOREAN;
             default:
                 return null;
         }
