@@ -21,6 +21,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * class for settings activity
+ * sudoku settings can be read from here
+ */
 public class SettingsActivity extends AppCompatActivity {
 
     private Switch darkModeBut;
