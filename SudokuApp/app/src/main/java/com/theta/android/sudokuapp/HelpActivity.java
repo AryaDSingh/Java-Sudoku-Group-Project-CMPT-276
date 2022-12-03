@@ -9,6 +9,8 @@ import android.widget.Button;
 
 /**
  * activity class for the help menu
+ *
+ * displays the instructions from layout
  */
 public class HelpActivity extends AppCompatActivity {
 

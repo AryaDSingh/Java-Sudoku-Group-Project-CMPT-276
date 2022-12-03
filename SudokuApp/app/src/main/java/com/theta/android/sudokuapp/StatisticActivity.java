@@ -5,16 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
-
-import java.io.File;  // Import the File class
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;  // Import the IOException class to handle errors
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * class for statistics activity
