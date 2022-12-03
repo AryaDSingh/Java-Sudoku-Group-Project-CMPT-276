@@ -84,7 +84,6 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openWordButton();
-
             }
             public void openWordButton() {
                 Intent intent_word = new Intent(SettingsActivity.this, WordBankActivity.class);
@@ -101,7 +100,6 @@ public class SettingsActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
 
         int difficulty = diffIds.indexOf(diffGroup.getCheckedRadioButtonId());
-
         int boardSize = sizeIds.indexOf(sizeGroup.getCheckedRadioButtonId());
 
         Boolean darkMode = darkModeBut.isChecked();

@@ -14,7 +14,7 @@ import android.widget.TextView;
 import java.util.Locale;
 
 /**
- * cell Controller class
+ * Cell Controller class
  */
 public class cSudokuCell {
     private final Button but;
@@ -25,7 +25,6 @@ public class cSudokuCell {
     private Boolean voiceMode;
     private Boolean enabled = true;
     private TextToSpeech tts;
-
 
     /**
      * initializes the cell

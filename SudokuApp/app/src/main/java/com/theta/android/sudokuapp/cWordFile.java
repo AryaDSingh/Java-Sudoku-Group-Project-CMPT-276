@@ -9,7 +9,7 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 
 /**
- * File controller class
+ * Word File controller class
  */
 public class cWordFile {
     private Context context;
@@ -17,7 +17,6 @@ public class cWordFile {
     private Button delBut;
     private CheckBox checkBut;
     private LinearLayout butParent;
-    private LinearLayout layout;
     private cWordBank parent;
     private Boolean isFile;
     private String text;
@@ -56,7 +55,6 @@ public class cWordFile {
         this.parent = parent;
         this.isFile = isFile;
         this.text = text;
-        this.layout = layout;
         createBut(layout, isDel);
 
         createListener();

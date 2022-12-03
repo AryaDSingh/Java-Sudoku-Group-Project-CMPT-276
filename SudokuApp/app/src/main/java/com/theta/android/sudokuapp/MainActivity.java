@@ -11,13 +11,16 @@ import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "SUDOKU";
-    //button stuff
     private cSudoku game;
+    //button stuff
     private Button btn_help;
     private Button btn_settings;
     private Button btn_stat;
     private Button btn_hint;
 
+    /**
+     * sends a onStop event to sudoku
+     */
     @Override
     protected void onStop() {
         super.onStop();
@@ -93,11 +96,6 @@ public class MainActivity extends AppCompatActivity {
                 //do stuff for hint
             }
         });
-
-
-
-
-
     }
 
     /**

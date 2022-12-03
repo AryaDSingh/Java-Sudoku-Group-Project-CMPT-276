@@ -31,6 +31,7 @@ public class cWordBank {
     private final static String practiceDir = "Practice"; //Practice folder directory
     private final static String mainPairDir = "  .mainPairDir"; //directory that points the the selected file
 
+    private WordBank bank;
     private LinearLayout layout;
     private Context context;
     private String dir = ""; // the current directory
@@ -42,6 +43,7 @@ public class cWordBank {
      * @param layout layout to display files in
      */
     public cWordBank(Context context, LinearLayout layout) {
+        this.bank = new WordBank();
         this.context = context;
         this.layout = layout;
         getFiles();
@@ -169,7 +171,6 @@ public class cWordBank {
         String[] defaultList = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"};
         SharedPreferences.Editor editor = prefs.edit();
 
-
         setFilePerms(editor, rootDir, practiceDir, false, false);
         setFilePerms(editor, rootDir, defaultDir, true, false);
 
@@ -186,23 +187,12 @@ public class cWordBank {
 
     /**
      * changes the directory
-     * @param file name of the file/folder to change directory to,
+     * @param file the file/folder to change directory to,
      *             if null goes up a directory instead
      */
     public void changeDir(cWordFile file) {
         saveFiles();
-        if (file == null) {
-            if (dir.equals(rootDir)) {return;}
-
-            int i = dir.lastIndexOf(" ");
-            if (i == -1) {i = 0;}
-            dir = dir.substring(0, i);
-
-        }
-        else {
-            dir = (dir+" "+file.getText()).trim();
-
-        }
+        dir = bank.changeDir(dir , file != null? file.getText(): "", rootDir);
         while (fileList.size() > 0) {
             removeFile(fileList.remove(0));
         }

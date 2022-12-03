@@ -25,8 +25,6 @@ import java.util.function.Function;
  * various helper functions used in various classes
  */
 public final class HelpFunc {
-    private HelpFunc() {
-    }
 
     /**
      * cleans a string of whitespaces and invisible characters
