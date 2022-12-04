@@ -334,5 +334,14 @@ public class SudokuTest {
         assertEquals(testValue, expectedValue);
     }
 
+    /*
+    NOTE
+
+    Some functions cannot be tested by themselves and require instantiated values from other functions
+    therefore some functions are tested together.
+
+    Every function has been covered at least twice
+     */
+
 
 }
