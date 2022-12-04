@@ -284,21 +284,33 @@ public class SudokuTest {
     }
 
 
-
+    /**
+     * check moves is instantiated properly
+     */
     @Test
-    public void startGame() {
-        int testValue = 0;
+    public void startGame1() {
         int expectedValue = 0;
 
-        assertEquals(testValue, expectedValue);
+        Sudoku sudoku = new Sudoku();
+        sudoku.startGame();
+
+        int result = sudoku.getMoves();
+        assertEquals(expectedValue, result);
     }
 
+    /**
+     * check time is instantiated properly
+     */
     @Test
-    public void onCellChange() {
-        int testValue = 0;
+    public void startGame2() {
         int expectedValue = 0;
+        int delta = 1;
 
-        assertEquals(testValue, expectedValue);
+        Sudoku sudoku = new Sudoku();
+        sudoku.startGame();
+
+        int result = sudoku.getTime();
+        assertEquals(expectedValue, result, delta);
     }
 
     @Test
