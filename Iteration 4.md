@@ -147,9 +147,28 @@ files.
 
 
 
+## Listening Comprehension
+
+### 8. Comprehension Mode
+
+> As a student who wants to practice my understanding of spoken words in the language that I am learning, I want a listening comprehension mode. In this mode, numbers will appear in the prefilled cells. When I press the number, the corresponding word in the language that I am learning will be read out to me. I can then test my listening comprehension by selecting from the menu the correct English translation of the word.
+
+#### Given
+Sudoku grid with comprehension mode enabled and language set to "French"
+
+<img src="img/9+9.png">
+
+#### When
+1. Clicking on a prefilled cell (lets assume 3)
+
+#### Then
+The phone will speak the word "noir" (assume word pair 3 is (noir, black)) in french.
+
+<img src="img/9+9.png">
+
 ## General 
 
-### 8. Settings 
+### 9. Settings 
 
 > As a user of the app I want certain functionalities in the app like "Dark Mode", selecting difficulty level.
 
@@ -167,7 +186,7 @@ files.
 
 <img src="img/dark.png">
 
-### 9. Statistics
+### 10. Statistics
 
 > As an expert user of the app, I want a statistic button which displays my statistics in the game, so that I can keep track of my progress.
 
