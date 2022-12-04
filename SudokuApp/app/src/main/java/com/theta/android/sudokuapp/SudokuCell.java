@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/**
+ * cell Model class
+ */
 public class SudokuCell {
     private String text = "";
 
@@ -21,6 +24,10 @@ public class SudokuCell {
         return text;
     }
 
+    /**
+     * gets the first two letters of the current text value
+     * @return the first two letters of the current text value
+     */
     public String getFirst2() {
         return text.length() > 2 ? text.substring(0, 2) : text;
     }

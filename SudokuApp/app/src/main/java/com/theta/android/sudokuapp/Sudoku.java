@@ -11,7 +11,9 @@ import java.util.List;
 import java.util.Random;
 
 
-
+/**
+ * Sudoku Model class
+ */
 public class Sudoku {
     private int size; //side length size
     private int gridH;// this should be smaller than (or equal) to gridW
@@ -22,7 +24,8 @@ public class Sudoku {
     private long startTime;
     private int moves;
 
-    private final Boolean testing = true; // change this to true if you only want 1 empty cell upon creating a game
+    // change this to true if you only want 1 empty cell upon creating a game
+    private final Boolean testing = true;
 
     public int getGridW() {
         return gridW;
@@ -34,6 +37,12 @@ public class Sudoku {
 
     public int getMoves() {
         return moves;
+    }
+
+    public int getDifficulty() { return difficulty; }
+
+    public int getSize() {
+        return size;
     }
 
     public int getTime() {
@@ -48,7 +57,14 @@ public class Sudoku {
         return cells.get(y).get(x);
     }
 
+    public void setDifficulty(final int difficulty) {
+        this.difficulty = difficulty;
+    }
 
+    /**
+     * initializes the board size and grid sizes using a size id
+     * @param sizeId id that represents the board size
+     */
     public void setSize(int sizeId) {
         if (sizeId == 0 || sizeId == 4) {
             size = 4;
@@ -72,42 +88,10 @@ public class Sudoku {
         }
     }
 
-
-    public void setDifficulty(final int difficulty) {
-        this.difficulty = difficulty;
-    }
-
-    public int getDifficulty() { return difficulty; }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void startGame() {
-        this.startTime = Calendar.getInstance().getTimeInMillis();
-        this.moves = 0;
-    }
-
-    private Boolean isBoardFull(List<List<Integer>> boardLayout) {
-        for (List<Integer> i: boardLayout) {
-            if (i.contains(-1)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void loadSave(String layout) {
-        cells = new ArrayList<>();
-        String[] cellStrings = layout.split(",");
-        for (int y = 0; y < size; y++) {
-            cells.add(new ArrayList<>());
-            for (int x = 0; x < size; x++) {
-                cells.get(y).add(cellStrings[y*size+x].trim());
-            }
-        }
-    }
-
+    /**
+     * saves board state as a csv string
+     * @return csv string of the board state
+     */
     public String getSaveString() {
         String s = "";
         for (List<String> row: cells) {
@@ -119,6 +103,49 @@ public class Sudoku {
         return s;
     }
 
+    /**
+     * initializes values before starting a game
+     */
+    public void startGame() {
+        this.startTime = Calendar.getInstance().getTimeInMillis();
+        this.moves = 0;
+    }
+
+    /**
+     * checks if all the cells in the sudoku are filled in
+     * @param boardLayout cells value list
+     * @return True if all cells are filled in, else false
+     */
+    private Boolean isBoardFull(List<List<Integer>> boardLayout) {
+        for (List<Integer> i: boardLayout) {
+            if (i.contains(-1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * initializes board data using a csv data from a save
+     * @param layout csv string that represents a valid board state
+     */
+    public void loadSave(String layout) {
+        cells = new ArrayList<>();
+        String[] cellStrings = layout.split(",");
+        for (int y = 0; y < size; y++) {
+            cells.add(new ArrayList<>());
+            for (int x = 0; x < size; x++) {
+                cells.get(y).add(cellStrings[y*size+x].trim());
+            }
+        }
+    }
+
+    /**
+     * recursive backtracking algorithm to create a fully solved random sudoku board
+     * @param boardLayout a sudoku board that is initialed as empty (contains only -1 as values)
+     * @param vals integers to populate the sudoku board with.
+     * @return a fully solved sudoku board in the form of a list
+     */
     private Boolean makeBoard(List<List<Integer>> boardLayout, List<Integer> vals ) {
         int y=0,x=0;
         for (int i = 0; i < size*size; i++) {
@@ -156,6 +183,11 @@ public class Sudoku {
         return false;
     }
 
+    /**
+     * creates a random sudoku board and fills it with numbers from -1 to size-1
+     * -1 indicates an empty space while other numbers represent a word pair
+     * @return a valid incomplete sudoku board represented as a 2d list
+     */
     public List<List<Integer>> createBoard() {
         List<List<Integer>> boardLayout = new ArrayList<>();
         for (int y = 0; y < size; y++) {
@@ -190,7 +222,6 @@ public class Sudoku {
     /**
      * Checks board cells to see if player has completed the game
      *
-     * @param
      * @return True if the player has won the game
      */
     public Boolean checkWin() {
@@ -206,7 +237,11 @@ public class Sudoku {
         return true;
     }
 
-
+    /**
+     * checks and validates horizontal line at specified index
+     * @param index y, x coordinate of line to check
+     * @return true if line is completed and only contains unique values.
+     */
     private boolean checkLineH(Pair<Integer,Integer> index) {
         List<Pair<String,String>> seen = new ArrayList<>();
 
@@ -220,6 +255,11 @@ public class Sudoku {
         return true;
     }
 
+    /**
+     * checks and validates vertical line at specified index
+     * @param index y, x coordinate of line to check
+     * @return true if line is completed and only contains unique values.
+     */
     private Boolean checkLineV(Pair<Integer,Integer> index) {
         List<Pair<String,String>> seen = new ArrayList<>();
 
@@ -234,6 +274,11 @@ public class Sudoku {
         return true;
     }
 
+    /**
+     * checks and validates grid at specified index
+     * @param index y, x coordinate of grid to check
+     * @return true if grid is completed and only contains unique values.
+     */
     private Boolean checkGrid(Pair<Integer,Integer> index) {
         index = new Pair<>((index.first/gridH)*gridH,(index.second/gridW)*gridW); //index of first cell in grid
         List<Pair<String, String>> seen = new ArrayList<>();
@@ -251,6 +296,11 @@ public class Sudoku {
         return true;
     }
 
+    /**
+     * finds and returns word pair that matches the sting
+     * @param text string to search for in word pairs list
+     * @return word pair that matches the string otherwise null
+     */
     public Pair<String, String> findWordPair(String text) {
         for (Pair<String, String> pair: pairs) {
             if (text.equals(pair.first) || text.equals(pair.second) ) {
@@ -260,6 +310,25 @@ public class Sudoku {
         return null;
     }
 
+    /**
+     * finds the index of the string in pairs list
+     * @param text the string to search from in word pairs list
+     * @return index of specified string in pairs list
+     */
+    public int getPairIndex(String text) {
+        int size = pairs.size();
+        for (int i = 0; i < size; i++) {
+            Pair<String, String> pair = pairs.get(i);
+            if (text.equals(pair.first) || text.equals(pair.second)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * initializes cells list and populates it with correct word pairs.
+     */
     public void generateBoard() {
         List<List<Integer>> boardLayout = createBoard();
         cells = new ArrayList<>();
@@ -282,6 +351,10 @@ public class Sudoku {
         }
     }
 
+    /**
+     * initializes and populates pairs list
+     * @param lines pair data in a csv format
+     */
     public void initPairs(List<String> lines) {
         pairs = new ArrayList<>();
         for (String line: lines) {
@@ -295,6 +368,12 @@ public class Sudoku {
 
     }
 
+    /**
+     * Event that is called upon any grid cell changing text
+     * @param index location of the cell that called this event
+     * @param value new text of the cell that called this event
+     * @return True if player has won the game, else false
+     */
     public Boolean onCellChange(Pair<Integer, Integer> index, String value) {
         moves++;
         cells.get(index.first).set(index.second, value);
