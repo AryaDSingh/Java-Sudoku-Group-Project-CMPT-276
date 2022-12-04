@@ -43,6 +43,21 @@
 
 ## Different Devices
 
+### 2. Using a Tablet
+
+> As a vocabulary learner practicing at home, I want to use my tablet for Sudoku vocabulary practice, so that the words will be conveniently displayed in larger, easier to read fonts.
+
+**Given**
+
+<img src="img/tablet1.png">
+
+*When*
+1. Open the sudoku app by clicking on the app icon
+
+**Then**
+
+<img src="img/tablet2.png">
+
 ### 2. Using Landscape mode
 
 > As a vocabulary learner taking the bus, I want to use my phone in landscape mode for Sudoku vocabulary practice, so that longer words are displayed in a larger font than standard mode.
@@ -73,9 +88,24 @@ files.
 4. Word pair files can be created by clicking the "add file" button and naming it appropriatly. The word pairs can be added by opening the file and clicking on "add pair".
 5. File inside the Teacher's folder is created which students can use later
 
+### 4. Word Pairs from Textbook
 
-**Then**          <img src="img/Teacher_folder.png">
-<img src="img/Teacher_folder_file.png">
+> As a student working with a textbook, I want to load pairs of words to practice from each chapter of the book.
+
+**Given**       
+<img src="img/no_teacher.png">
+
+**When**
+1. Click on the settings
+2. Click on the Word Bank in the settings 
+3. Here the student can create a folder called "French Textbook" (assume the student is learning french) and copy down word pairs from their french textbooks. Folder can be created by clicking the "add folder" button and naming it appropriatly("French Textbook"). 
+4. Word pair files can be created by clicking the "add file" button and naming it appropriatly("Chapter 1", "Chapter 2", etc). The word pairs can be added by opening the file and clicking on "add pair".
+5. File inside the Textbook folder is created which students can use later
+
+**Then**          
+<img src="img/textbook.png">
+<img src="img/textbookFiles.png">
+
 
 ### 4. As a Student, want to keep track of words I am struggling
 
@@ -91,6 +121,9 @@ files.
 5. Select the file you want to practise with.
 
 **Then**          <img src="img/fullpair.png">
+
+
+
 
 ### 5. As a user, want to change certain settings
 
