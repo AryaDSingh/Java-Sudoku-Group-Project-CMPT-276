@@ -152,6 +152,17 @@ public class SettingsActivity extends AppCompatActivity {
         return prefs.getBoolean("translatemode", false);
     }
 
+    public static Boolean readVoiceMode(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        return prefs.getBoolean("voicemode", false);
+    }
+
+    public static String readLanguage(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        return prefs.getString("language", "English");
+    }
+
+
     //dark mode
     private void setLayout() {
         if (SettingsActivity.readColorMode(this)) {

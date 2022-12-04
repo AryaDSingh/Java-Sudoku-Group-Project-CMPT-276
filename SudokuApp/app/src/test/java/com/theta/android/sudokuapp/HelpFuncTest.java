@@ -6,6 +6,7 @@ import android.util.Log;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -39,21 +40,74 @@ public class HelpFuncTest {
         assertEquals(returnValue3, expectedValue3);;
     }
 
-    @Test
-    public void readFile() {
-        int testValue = 0;
-        int expectedValue = 0;
+    /**
+     * test multiple 0 occurances of character
+     */
 
-        assertEquals(testValue, expectedValue);;
+    @Test
+    public void split1() {
+        String testValue1 = "abcdef";
+        Character splitAt =  ' ';
+        List<String> expectedValue = Arrays.asList("abcdef");
+
+        List<String> result = HelpFunc.split(testValue1, splitAt);
+        assertEquals(expectedValue, result);
     }
 
 
+    /**
+     * test multiple occurances of character
+     */
+
     @Test
-    public void split() {
+    public void split2() {
         String testValue1 = "a b c   ";
-        List<String> result1 = HelpFunc.split(testValue1, ' ');
-        assertEquals(6, result1.size());
+        Character splitAt =  ' ';
+        List<String> expectedValue = Arrays.asList("a","b", "c", "", "", "");
+
+        List<String> result = HelpFunc.split(testValue1, splitAt);
+        assertEquals(expectedValue, result);
     }
+
+    /**
+     * test regular simple input
+     */
+    @Test
+    public void split3() {
+        String testValue1 = "a b";
+        Character splitAt =  ' ';
+        List<String> expectedValue = Arrays.asList("a","b");
+
+        List<String> result = HelpFunc.split(testValue1, splitAt);
+        assertEquals(expectedValue, result);
+    }
+
+    /**
+     * test empty string
+     */
+    @Test
+    public void split4() {
+        String testValue1 = "";
+        Character splitAt =  ' ';
+        List<String> expectedValue = new ArrayList<>();
+
+        List<String> result = HelpFunc.split(testValue1, splitAt);
+        assertEquals(expectedValue, result);
+    }
+
+    /**
+     * test string that is the same as the character
+     */
+    @Test
+    public void split5() {
+        String testValue1 = " ";
+        Character splitAt =  ' ';
+        List<String> expectedValue = Arrays.asList("","");
+
+        List<String> result = HelpFunc.split(testValue1, splitAt);
+        assertEquals(expectedValue, result);
+    }
+
 
     /**
      * testing incorrect input

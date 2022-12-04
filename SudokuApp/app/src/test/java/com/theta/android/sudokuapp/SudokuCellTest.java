@@ -20,11 +20,62 @@ public class SudokuCellTest {
         assertEquals(expectedValue,result);
     }
 
+    /**
+     * testing with empty string
+     */
+    @Test
+    public void getFirst1() {
+        SudokuCell cell = new SudokuCell();
+
+        String testValue = "";
+        cell.setText(testValue);
+        String expectedValue = "";
+
+        String result = cell.getFirst2();
+
+        assertEquals(expectedValue,result);
+    }
+
+    /**
+     * testing with length 1 string
+     */
     @Test
     public void getFirst2() {
         SudokuCell cell = new SudokuCell();
 
-        String testValue = "123";
+        String testValue = "b";
+        cell.setText(testValue);
+        String expectedValue = "b";
+
+        String result = cell.getFirst2();
+
+        assertEquals(expectedValue,result);
+    }
+
+    /**
+     * testing with length 2 string
+     */
+    @Test
+    public void getFirst3() {
+        SudokuCell cell = new SudokuCell();
+
+        String testValue = "ba";
+        cell.setText(testValue);
+        String expectedValue = "ba";
+
+        String result = cell.getFirst2();
+
+        assertEquals(expectedValue,result);
+    }
+
+    /**
+     * testing with normal input
+     */
+    @Test
+    public void getFirst4() {
+        SudokuCell cell = new SudokuCell();
+
+        String testValue = "123456abcde";
         cell.setText(testValue);
         String expectedValue = "12";
 
@@ -33,36 +84,5 @@ public class SudokuCellTest {
         assertEquals(expectedValue,result);
     }
 
-    @Test
-    public void getText() {
-        int testValue = 0;
-        int expectedValue = 0;
-
-        assertEquals(testValue, expectedValue);
-    }
-
-    @Test
-    public void styleCell(){
-        int testValue = 0;
-        int expectedValue = 0;
-
-        assertEquals(testValue, expectedValue);
-    }
-
-    @Test
-    public void createListener(){
-        int testValue = 0;
-        int expectedValue = 0;
-
-        assertEquals(testValue, expectedValue);
-    }
-
-    @Test
-    public void createPrompt() {
-        int testValue = 0;
-        int expectedValue = 0;
-
-        assertEquals(testValue, expectedValue);
-    }
 
 }
