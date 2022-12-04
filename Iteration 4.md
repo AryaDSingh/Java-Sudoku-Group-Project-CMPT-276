@@ -1,20 +1,49 @@
-## Refining TDD examples using Given-When-Then patterns
+# Refining TDD examples using Given-When-Then patterns
 
-## 1. Multiple Size Grid for beginners
+## Different Size Sudoku Grids
+
+### 1. Multiple Size Grid for beginners
 
 > As a teacher of elementary and junior high school children, I want scaled versions of Sudoku that use 4x4 and 6x6 grids. In the 6x6 grid version, the overall grid should be divided into rectangles of 2 cells each (2x2).
 
-**Given**      <img src="img/9+9.png">
+**Given**    
+
+<img src="img/9+9.png">
 
 
 **When**
 1. Click on the Settings 
-2. Select your desired size of sudoku for example:- 4x4, 6x6
+2. Select your desired size of sudoku for example: 4x4
 3. Go back
 
-**Then**          <img src="img/4+4.png">
+**Then**      
 
-## 2. Using Landscape mode
+<img src="img/4+4.png">
+
+
+
+### 2. Extra Challenging Grid 
+
+> As a vocabulary learner who wants an extra challenging mode, I want a 12x12 version of Sudoku to play on my tablet. The overall grid should be divided into rectangles of 12 cells each (3x4).
+
+**Given**
+
+<img src="img/9+9.png">
+
+**When**
+1. Click on the Settings 
+2. Select the 12x12 sudoku size option.
+3. Go back
+
+**Then** 
+
+<img src="img/12+12.png">
+
+
+
+## Different Devices
+
+### 2. Using Landscape mode
 
 > As a vocabulary learner taking the bus, I want to use my phone in landscape mode for Sudoku vocabulary practice, so that longer words are displayed in a larger font than standard mode.
 
@@ -28,7 +57,9 @@ For language learner users who prefer to use landscape mode, the app will **auto
 **Then**          <img src="img/landscape.png">
 
 
-## 3. As a teacher, giving students certain words to practice this week
+## Vocabulary Lists
+
+### 3. As a teacher, giving students certain words to practice this week
 
 > As a teacher, I want to specify a list of word pairs for my students to practice this week. The folder name will be "Teacher" with multipe 
 files.
@@ -46,7 +77,7 @@ files.
 **Then**          <img src="img/Teacher_folder.png">
 <img src="img/Teacher_folder_file.png">
 
-## 4. As a Student, want to keep track of words I am struggling
+### 4. As a Student, want to keep track of words I am struggling
 
 > As a student learning new language I want to practice words more that i have difficult time recognizing. So I want to save those words
 
@@ -61,7 +92,7 @@ files.
 
 **Then**          <img src="img/fullpair.png">
 
-## 5. As a user, want to change certain settings
+### 5. As a user, want to change certain settings
 
 > As a user of the app I want certain functionalities in the app like "Dark Mode", selecting difficulty level.
 
@@ -75,7 +106,7 @@ files.
 
 **Then**          <img src="img/dark.png">
 
-## 6. As a user, want to see my performance
+### 6. As a user, want to see my performance
 
 > As an expert user of the app, I want a statistic button which displays my statistics in the game, so that I can keep track of my progress.
 
