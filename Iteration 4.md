@@ -60,6 +60,7 @@
 1. Open the sudoku app by clicking on the app icon
 
 #### Then
+A special tablet layout will be displayed
 
 <img src="img/tablet2.png">
 
